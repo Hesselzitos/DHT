@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+service DHT {
+  rpc JoinDHT (join) returns (join_ok) {}
+  rpc newNode ()
+  //rpc leave
+  //rpc nodeGone
+  //rpc store
+  //rpc retrive
+  //rpc nodeGone
+  //rpc store
+  //rpc retrive
+}
+
+message HT{
+  string Identifier = 1;
+  string IP=2;
+  string port=3;
+}
+
+message join {
+  HT ht=1;
+}
+
+message join_ok {
+  HT predecessor = 1;
+  HT sucessor=2;
+}
