@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.ufabc.app.grpc";
+option java_outer_classname = "DHTProto";
+option objc_class_prefix = "DHT";
+
+service DHT {
+  //Avisa que entrou na rede e recebe seu no sucessor, que atualizou o proprio predecessor
+  rpc joinRing(JOIN) returns(JOIN_OK){}
+  //Atualiza o sucessor de seu predecessor
+  rpc sucessorAtualize(NEW_NODE) returns(messageReceived){}
+  //Transfere a responsabilidade pelos itens daquele novo HT com seus items
+  rpc transferItemResponsability(TRANSFER) returns(messageReceived){}
+}
+
+message hashTable{
+  string HashIdentifier=1;
+  string IP=2;
+  string port=3;
+}
+message item{
+  int64 keyItemHash=1;
+  int64 sizeValueItem=2;
+  bytes valueItem=3;
+}
+message messageReceived{}
+//Roteadas atraves do anel
+message JOIN{
+  hashTable hashTableEntrant=1;
+}
+message STORE{
+  item itemToStore=1;
+
+}
+message RETRIEVE{
+  int64 keyItemHash=1;
+  hashTable hashTableIdentifier=2;
+}
+//Enviadas diretamente para os ao destinatario
+message JOIN_OK{
+  hashTable hashTablePredecessor=1;
+  hashTable hashTableSucessor=2;
+}
+message NEW_NODE{
+  hashTable hashTableSucessor=1;
+}
+message LEAVE{
+  hashTable hashTablePredecessor=1;
+}
+message NODE_GONE{
+  hashTable hashTableSucessor=1;
+}
+message OK{
+  item item=1;
+}
+message NOT_FOUND{
+}
+message TRANSFER{
+  item itemTransfer=1;
+}

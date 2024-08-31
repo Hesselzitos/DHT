@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+option java_package = "com.ufabc.app.grpc";
+
 service DHT {
   //Avisa que entrou na rede e recebe seu no sucessor, que atualizou o proprio predecessor
   rpc joinRing(JOIN) returns(JOIN_OK){}
