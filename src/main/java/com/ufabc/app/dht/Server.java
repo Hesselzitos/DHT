@@ -14,7 +14,6 @@ public class Server extends Node{
 
     public JOIN_OK joinRing(JOIN join){
         return JOIN_OK.newBuilder().build();
-
     }
     public MessageReply sucessorAtualize(NEW_NODE newNode){
         return MessageReply.newBuilder().setAck("ok").build();
