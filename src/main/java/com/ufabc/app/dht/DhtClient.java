@@ -5,10 +5,10 @@ import io.grpc.Channel;
 
 import java.util.logging.Logger;
 
-public class Client extends Node{
-    private static final Logger logger = Logger.getLogger(Client.class.getName());
+public class DhtClient extends DhtNode {
+    private static final Logger logger = Logger.getLogger(DhtClient.class.getName());
 
-    protected Client(Channel channel) {
+    protected DhtClient(Channel channel) {
         super(channel);
     }
 
