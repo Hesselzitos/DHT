@@ -5,12 +5,8 @@ import io.grpc.Channel;
 
 import java.util.logging.Logger;
 
-public class DhtClient extends DhtNode {
+public class DhtClient {
     private static final Logger logger = Logger.getLogger(DhtClient.class.getName());
-
-    protected DhtClient(Channel channel) {
-        super(channel);
-    }
 
     public JOIN_OK joinRing(JOIN join){
 

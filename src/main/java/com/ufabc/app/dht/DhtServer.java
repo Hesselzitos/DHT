@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -47,6 +48,7 @@ public class DhtServer{
             throw new RuntimeException(e);
         }
         logger.info("Server started, listening on " + port);
+        logger.info("\nInformacoes do Node: \n" + selfHashTable.toString());
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
@@ -82,10 +84,10 @@ public class DhtServer{
 
 
     public static void initializeServer() {
-        List<String> dhtNodes = readControlDHTFile();
-        String hashIdentifier = selfHashTable.getHashIdentifier();
-        while(dhtNodes.contains(hashIdentifier) || !selfHashTable.isInitialized())configureNode();
-        dhtNodes.add(hashIdentifier);
+        configureNode();
+        ArrayList<String> dhtNodes = readControlDHTFile();
+        while(dhtNodes.contains(selfHashTable.getHashIdentifier()))configureNode();
+        dhtNodes.add(selfHashTable.getHashIdentifier());
         writeControlDHTFile(dhtNodes);
     }
 
@@ -94,7 +96,7 @@ public class DhtServer{
         int port = new Random().ints(49152, 65535).findFirst().getAsInt();
         String ip = "127.0.0.1";
         String hashIdentifier = hashIdentifierGenerate(ip + port);
-        selfHashTable.toBuilder().setHashIdentifier(hashIdentifier).setIP(ip).setPort(port);
+        selfHashTable = HashTable.newBuilder().setHashIdentifier(hashIdentifier).setIP(ip).setPort(port).build();
     }
 
     private static String hashIdentifierGenerate(String textToHash) {
