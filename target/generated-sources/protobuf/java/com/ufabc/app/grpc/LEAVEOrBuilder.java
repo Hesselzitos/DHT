@@ -9,17 +9,17 @@ public interface LEAVEOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.hashTable hashTablePredecessor = 1;</code>
+   * <code>.HashTable hashTablePredecessor = 1;</code>
    * @return Whether the hashTablePredecessor field is set.
    */
   boolean hasHashTablePredecessor();
   /**
-   * <code>.hashTable hashTablePredecessor = 1;</code>
+   * <code>.HashTable hashTablePredecessor = 1;</code>
    * @return The hashTablePredecessor.
    */
-  com.ufabc.app.grpc.hashTable getHashTablePredecessor();
+  com.ufabc.app.grpc.HashTable getHashTablePredecessor();
   /**
-   * <code>.hashTable hashTablePredecessor = 1;</code>
+   * <code>.HashTable hashTablePredecessor = 1;</code>
    */
-  com.ufabc.app.grpc.hashTableOrBuilder getHashTablePredecessorOrBuilder();
+  com.ufabc.app.grpc.HashTableOrBuilder getHashTablePredecessorOrBuilder();
 }

@@ -9,32 +9,32 @@ public interface JOIN_OKOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.hashTable hashTablePredecessor = 1;</code>
+   * <code>.HashTable hashTablePredecessor = 1;</code>
    * @return Whether the hashTablePredecessor field is set.
    */
   boolean hasHashTablePredecessor();
   /**
-   * <code>.hashTable hashTablePredecessor = 1;</code>
+   * <code>.HashTable hashTablePredecessor = 1;</code>
    * @return The hashTablePredecessor.
    */
-  com.ufabc.app.grpc.hashTable getHashTablePredecessor();
+  com.ufabc.app.grpc.HashTable getHashTablePredecessor();
   /**
-   * <code>.hashTable hashTablePredecessor = 1;</code>
+   * <code>.HashTable hashTablePredecessor = 1;</code>
    */
-  com.ufabc.app.grpc.hashTableOrBuilder getHashTablePredecessorOrBuilder();
+  com.ufabc.app.grpc.HashTableOrBuilder getHashTablePredecessorOrBuilder();
 
   /**
-   * <code>.hashTable hashTableSucessor = 2;</code>
+   * <code>.HashTable hashTableSucessor = 2;</code>
    * @return Whether the hashTableSucessor field is set.
    */
   boolean hasHashTableSucessor();
   /**
-   * <code>.hashTable hashTableSucessor = 2;</code>
+   * <code>.HashTable hashTableSucessor = 2;</code>
    * @return The hashTableSucessor.
    */
-  com.ufabc.app.grpc.hashTable getHashTableSucessor();
+  com.ufabc.app.grpc.HashTable getHashTableSucessor();
   /**
-   * <code>.hashTable hashTableSucessor = 2;</code>
+   * <code>.HashTable hashTableSucessor = 2;</code>
    */
-  com.ufabc.app.grpc.hashTableOrBuilder getHashTableSucessorOrBuilder();
+  com.ufabc.app.grpc.HashTableOrBuilder getHashTableSucessorOrBuilder();
 }

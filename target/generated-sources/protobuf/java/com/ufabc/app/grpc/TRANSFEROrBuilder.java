@@ -9,17 +9,17 @@ public interface TRANSFEROrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.item itemTransfer = 1;</code>
+   * <code>.Item itemTransfer = 1;</code>
    * @return Whether the itemTransfer field is set.
    */
   boolean hasItemTransfer();
   /**
-   * <code>.item itemTransfer = 1;</code>
+   * <code>.Item itemTransfer = 1;</code>
    * @return The itemTransfer.
    */
-  com.ufabc.app.grpc.item getItemTransfer();
+  com.ufabc.app.grpc.Item getItemTransfer();
   /**
-   * <code>.item itemTransfer = 1;</code>
+   * <code>.Item itemTransfer = 1;</code>
    */
-  com.ufabc.app.grpc.itemOrBuilder getItemTransferOrBuilder();
+  com.ufabc.app.grpc.ItemOrBuilder getItemTransferOrBuilder();
 }

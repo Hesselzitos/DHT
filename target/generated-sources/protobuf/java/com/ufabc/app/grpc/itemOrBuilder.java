@@ -4,8 +4,8 @@
 // Protobuf Java Version: 3.25.1
 package com.ufabc.app.grpc;
 
-public interface itemOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:item)
+public interface ItemOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:Item)
     com.google.protobuf.MessageOrBuilder {
 
   /**

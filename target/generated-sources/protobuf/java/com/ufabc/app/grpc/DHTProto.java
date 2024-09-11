@@ -16,20 +16,20 @@ public final class DHTProto {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_hashTable_descriptor;
+    internal_static_HashTable_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_hashTable_fieldAccessorTable;
+      internal_static_HashTable_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_item_descriptor;
+    internal_static_Item_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_item_fieldAccessorTable;
+      internal_static_Item_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_messageReceived_descriptor;
+    internal_static_MessageReply_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_messageReceived_fieldAccessorTable;
+      internal_static_MessageReply_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JOIN_descriptor;
   static final 
@@ -89,51 +89,51 @@ public final class DHTProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017proto/DHT.proto\"=\n\thashTable\022\026\n\016HashId" +
-      "entifier\030\001 \001(\t\022\n\n\002IP\030\002 \001(\t\022\014\n\004port\030\003 \001(\t" +
-      "\"E\n\004item\022\023\n\013keyItemHash\030\001 \001(\003\022\025\n\rsizeVal" +
-      "ueItem\030\002 \001(\003\022\021\n\tvalueItem\030\003 \001(\014\"\021\n\017messa" +
-      "geReceived\",\n\004JOIN\022$\n\020hashTableEntrant\030\001" +
-      " \001(\0132\n.hashTable\"#\n\005STORE\022\032\n\013itemToStore" +
-      "\030\001 \001(\0132\005.item\"H\n\010RETRIEVE\022\023\n\013keyItemHash" +
-      "\030\001 \001(\003\022\'\n\023hashTableIdentifier\030\002 \001(\0132\n.ha" +
-      "shTable\"Z\n\007JOIN_OK\022(\n\024hashTablePredecess" +
-      "or\030\001 \001(\0132\n.hashTable\022%\n\021hashTableSucesso" +
-      "r\030\002 \001(\0132\n.hashTable\"1\n\010NEW_NODE\022%\n\021hashT" +
-      "ableSucessor\030\001 \001(\0132\n.hashTable\"1\n\005LEAVE\022" +
-      "(\n\024hashTablePredecessor\030\001 \001(\0132\n.hashTabl" +
-      "e\"2\n\tNODE_GONE\022%\n\021hashTableSucessor\030\001 \001(" +
-      "\0132\n.hashTable\"\031\n\002OK\022\023\n\004item\030\001 \001(\0132\005.item" +
-      "\"\013\n\tNOT_FOUND\"\'\n\010TRANSFER\022\033\n\014itemTransfe" +
-      "r\030\001 \001(\0132\005.item2\224\001\n\003DHT\022\035\n\010joinRing\022\005.JOI" +
-      "N\032\010.JOIN_OK\"\000\0221\n\020sucessorAtualize\022\t.NEW_" +
-      "NODE\032\020.messageReceived\"\000\022;\n\032transferItem" +
-      "Responsability\022\t.TRANSFER\032\020.messageRecei" +
-      "ved\"\000B&\n\022com.ufabc.app.grpcB\010DHTProtoP\001\242" +
-      "\002\003DHTb\006proto3"
+      "\n\017proto/DHT.proto\"=\n\tHashTable\022\026\n\016HashId" +
+      "entifier\030\001 \001(\t\022\n\n\002IP\030\002 \001(\t\022\014\n\004port\030\003 \001(\005" +
+      "\"E\n\004Item\022\023\n\013keyItemHash\030\001 \001(\003\022\025\n\rsizeVal" +
+      "ueItem\030\002 \001(\003\022\021\n\tvalueItem\030\003 \001(\014\"\033\n\014Messa" +
+      "geReply\022\013\n\003ack\030\001 \001(\t\",\n\004JOIN\022$\n\020hashTabl" +
+      "eEntrant\030\001 \001(\0132\n.HashTable\"#\n\005STORE\022\032\n\013i" +
+      "temToStore\030\001 \001(\0132\005.Item\"H\n\010RETRIEVE\022\023\n\013k" +
+      "eyItemHash\030\001 \001(\003\022\'\n\023hashTableIdentifier\030" +
+      "\002 \001(\0132\n.HashTable\"Z\n\007JOIN_OK\022(\n\024hashTabl" +
+      "ePredecessor\030\001 \001(\0132\n.HashTable\022%\n\021hashTa" +
+      "bleSucessor\030\002 \001(\0132\n.HashTable\"1\n\010NEW_NOD" +
+      "E\022%\n\021hashTableSucessor\030\001 \001(\0132\n.HashTable" +
+      "\"1\n\005LEAVE\022(\n\024hashTablePredecessor\030\001 \001(\0132" +
+      "\n.HashTable\"2\n\tNODE_GONE\022%\n\021hashTableSuc" +
+      "essor\030\001 \001(\0132\n.HashTable\"\031\n\002OK\022\023\n\004item\030\001 " +
+      "\001(\0132\005.Item\"\013\n\tNOT_FOUND\"\'\n\010TRANSFER\022\033\n\014i" +
+      "temTransfer\030\001 \001(\0132\005.Item2\216\001\n\003DHT\022\035\n\010join" +
+      "Ring\022\005.JOIN\032\010.JOIN_OK\"\000\022.\n\020sucessorAtual" +
+      "ize\022\t.NEW_NODE\032\r.MessageReply\"\000\0228\n\032trans" +
+      "ferItemResponsability\022\t.TRANSFER\032\r.Messa" +
+      "geReply\"\000B&\n\022com.ufabc.app.grpcB\010DHTProt" +
+      "oP\001\242\002\003DHTb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_hashTable_descriptor =
+    internal_static_HashTable_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_hashTable_fieldAccessorTable = new
+    internal_static_HashTable_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_hashTable_descriptor,
+        internal_static_HashTable_descriptor,
         new java.lang.String[] { "HashIdentifier", "IP", "Port", });
-    internal_static_item_descriptor =
+    internal_static_Item_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_item_fieldAccessorTable = new
+    internal_static_Item_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_item_descriptor,
+        internal_static_Item_descriptor,
         new java.lang.String[] { "KeyItemHash", "SizeValueItem", "ValueItem", });
-    internal_static_messageReceived_descriptor =
+    internal_static_MessageReply_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_messageReceived_fieldAccessorTable = new
+    internal_static_MessageReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_messageReceived_descriptor,
-        new java.lang.String[] { });
+        internal_static_MessageReply_descriptor,
+        new java.lang.String[] { "Ack", });
     internal_static_JOIN_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_JOIN_fieldAccessorTable = new

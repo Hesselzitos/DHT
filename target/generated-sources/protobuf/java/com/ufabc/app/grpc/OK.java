@@ -41,9 +41,9 @@ private static final long serialVersionUID = 0L;
 
   private int bitField0_;
   public static final int ITEM_FIELD_NUMBER = 1;
-  private com.ufabc.app.grpc.item item_;
+  private com.ufabc.app.grpc.Item item_;
   /**
-   * <code>.item item = 1;</code>
+   * <code>.Item item = 1;</code>
    * @return Whether the item field is set.
    */
   @java.lang.Override
@@ -51,19 +51,19 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <code>.item item = 1;</code>
+   * <code>.Item item = 1;</code>
    * @return The item.
    */
   @java.lang.Override
-  public com.ufabc.app.grpc.item getItem() {
-    return item_ == null ? com.ufabc.app.grpc.item.getDefaultInstance() : item_;
+  public com.ufabc.app.grpc.Item getItem() {
+    return item_ == null ? com.ufabc.app.grpc.Item.getDefaultInstance() : item_;
   }
   /**
-   * <code>.item item = 1;</code>
+   * <code>.Item item = 1;</code>
    */
   @java.lang.Override
-  public com.ufabc.app.grpc.itemOrBuilder getItemOrBuilder() {
-    return item_ == null ? com.ufabc.app.grpc.item.getDefaultInstance() : item_;
+  public com.ufabc.app.grpc.ItemOrBuilder getItemOrBuilder() {
+    return item_ == null ? com.ufabc.app.grpc.Item.getDefaultInstance() : item_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -413,31 +413,31 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private com.ufabc.app.grpc.item item_;
+    private com.ufabc.app.grpc.Item item_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        com.ufabc.app.grpc.item, com.ufabc.app.grpc.item.Builder, com.ufabc.app.grpc.itemOrBuilder> itemBuilder_;
+        com.ufabc.app.grpc.Item, com.ufabc.app.grpc.Item.Builder, com.ufabc.app.grpc.ItemOrBuilder> itemBuilder_;
     /**
-     * <code>.item item = 1;</code>
+     * <code>.Item item = 1;</code>
      * @return Whether the item field is set.
      */
     public boolean hasItem() {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.item item = 1;</code>
+     * <code>.Item item = 1;</code>
      * @return The item.
      */
-    public com.ufabc.app.grpc.item getItem() {
+    public com.ufabc.app.grpc.Item getItem() {
       if (itemBuilder_ == null) {
-        return item_ == null ? com.ufabc.app.grpc.item.getDefaultInstance() : item_;
+        return item_ == null ? com.ufabc.app.grpc.Item.getDefaultInstance() : item_;
       } else {
         return itemBuilder_.getMessage();
       }
     }
     /**
-     * <code>.item item = 1;</code>
+     * <code>.Item item = 1;</code>
      */
-    public Builder setItem(com.ufabc.app.grpc.item value) {
+    public Builder setItem(com.ufabc.app.grpc.Item value) {
       if (itemBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -451,10 +451,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.item item = 1;</code>
+     * <code>.Item item = 1;</code>
      */
     public Builder setItem(
-        com.ufabc.app.grpc.item.Builder builderForValue) {
+        com.ufabc.app.grpc.Item.Builder builderForValue) {
       if (itemBuilder_ == null) {
         item_ = builderForValue.build();
       } else {
@@ -465,13 +465,13 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.item item = 1;</code>
+     * <code>.Item item = 1;</code>
      */
-    public Builder mergeItem(com.ufabc.app.grpc.item value) {
+    public Builder mergeItem(com.ufabc.app.grpc.Item value) {
       if (itemBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0) &&
           item_ != null &&
-          item_ != com.ufabc.app.grpc.item.getDefaultInstance()) {
+          item_ != com.ufabc.app.grpc.Item.getDefaultInstance()) {
           getItemBuilder().mergeFrom(value);
         } else {
           item_ = value;
@@ -486,7 +486,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.item item = 1;</code>
+     * <code>.Item item = 1;</code>
      */
     public Builder clearItem() {
       bitField0_ = (bitField0_ & ~0x00000001);
@@ -499,33 +499,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.item item = 1;</code>
+     * <code>.Item item = 1;</code>
      */
-    public com.ufabc.app.grpc.item.Builder getItemBuilder() {
+    public com.ufabc.app.grpc.Item.Builder getItemBuilder() {
       bitField0_ |= 0x00000001;
       onChanged();
       return getItemFieldBuilder().getBuilder();
     }
     /**
-     * <code>.item item = 1;</code>
+     * <code>.Item item = 1;</code>
      */
-    public com.ufabc.app.grpc.itemOrBuilder getItemOrBuilder() {
+    public com.ufabc.app.grpc.ItemOrBuilder getItemOrBuilder() {
       if (itemBuilder_ != null) {
         return itemBuilder_.getMessageOrBuilder();
       } else {
         return item_ == null ?
-            com.ufabc.app.grpc.item.getDefaultInstance() : item_;
+            com.ufabc.app.grpc.Item.getDefaultInstance() : item_;
       }
     }
     /**
-     * <code>.item item = 1;</code>
+     * <code>.Item item = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        com.ufabc.app.grpc.item, com.ufabc.app.grpc.item.Builder, com.ufabc.app.grpc.itemOrBuilder> 
+        com.ufabc.app.grpc.Item, com.ufabc.app.grpc.Item.Builder, com.ufabc.app.grpc.ItemOrBuilder> 
         getItemFieldBuilder() {
       if (itemBuilder_ == null) {
         itemBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.ufabc.app.grpc.item, com.ufabc.app.grpc.item.Builder, com.ufabc.app.grpc.itemOrBuilder>(
+            com.ufabc.app.grpc.Item, com.ufabc.app.grpc.Item.Builder, com.ufabc.app.grpc.ItemOrBuilder>(
                 getItem(),
                 getParentForChildren(),
                 isClean());

@@ -15,17 +15,17 @@ public interface RETRIEVEOrBuilder extends
   long getKeyItemHash();
 
   /**
-   * <code>.hashTable hashTableIdentifier = 2;</code>
+   * <code>.HashTable hashTableIdentifier = 2;</code>
    * @return Whether the hashTableIdentifier field is set.
    */
   boolean hasHashTableIdentifier();
   /**
-   * <code>.hashTable hashTableIdentifier = 2;</code>
+   * <code>.HashTable hashTableIdentifier = 2;</code>
    * @return The hashTableIdentifier.
    */
-  com.ufabc.app.grpc.hashTable getHashTableIdentifier();
+  com.ufabc.app.grpc.HashTable getHashTableIdentifier();
   /**
-   * <code>.hashTable hashTableIdentifier = 2;</code>
+   * <code>.HashTable hashTableIdentifier = 2;</code>
    */
-  com.ufabc.app.grpc.hashTableOrBuilder getHashTableIdentifierOrBuilder();
+  com.ufabc.app.grpc.HashTableOrBuilder getHashTableIdentifierOrBuilder();
 }

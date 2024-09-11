@@ -5,18 +5,18 @@
 package com.ufabc.app.grpc;
 
 /**
- * Protobuf type {@code item}
+ * Protobuf type {@code Item}
  */
-public final class item extends
+public final class Item extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:item)
-    itemOrBuilder {
+    // @@protoc_insertion_point(message_implements:Item)
+    ItemOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use item.newBuilder() to construct.
-  private item(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use Item.newBuilder() to construct.
+  private Item(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private item() {
+  private Item() {
     valueItem_ = com.google.protobuf.ByteString.EMPTY;
   }
 
@@ -24,20 +24,20 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new item();
+    return new Item();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.ufabc.app.grpc.DHTProto.internal_static_item_descriptor;
+    return com.ufabc.app.grpc.DHTProto.internal_static_Item_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.ufabc.app.grpc.DHTProto.internal_static_item_fieldAccessorTable
+    return com.ufabc.app.grpc.DHTProto.internal_static_Item_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.ufabc.app.grpc.item.class, com.ufabc.app.grpc.item.Builder.class);
+            com.ufabc.app.grpc.Item.class, com.ufabc.app.grpc.Item.Builder.class);
   }
 
   public static final int KEYITEMHASH_FIELD_NUMBER = 1;
@@ -127,10 +127,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.ufabc.app.grpc.item)) {
+    if (!(obj instanceof com.ufabc.app.grpc.Item)) {
       return super.equals(obj);
     }
-    com.ufabc.app.grpc.item other = (com.ufabc.app.grpc.item) obj;
+    com.ufabc.app.grpc.Item other = (com.ufabc.app.grpc.Item) obj;
 
     if (getKeyItemHash()
         != other.getKeyItemHash()) return false;
@@ -162,44 +162,44 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static com.ufabc.app.grpc.item parseFrom(
+  public static com.ufabc.app.grpc.Item parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.ufabc.app.grpc.item parseFrom(
+  public static com.ufabc.app.grpc.Item parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.ufabc.app.grpc.item parseFrom(
+  public static com.ufabc.app.grpc.Item parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.ufabc.app.grpc.item parseFrom(
+  public static com.ufabc.app.grpc.Item parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.ufabc.app.grpc.item parseFrom(byte[] data)
+  public static com.ufabc.app.grpc.Item parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.ufabc.app.grpc.item parseFrom(
+  public static com.ufabc.app.grpc.Item parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.ufabc.app.grpc.item parseFrom(java.io.InputStream input)
+  public static com.ufabc.app.grpc.Item parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.ufabc.app.grpc.item parseFrom(
+  public static com.ufabc.app.grpc.Item parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -207,26 +207,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static com.ufabc.app.grpc.item parseDelimitedFrom(java.io.InputStream input)
+  public static com.ufabc.app.grpc.Item parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.ufabc.app.grpc.item parseDelimitedFrom(
+  public static com.ufabc.app.grpc.Item parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.ufabc.app.grpc.item parseFrom(
+  public static com.ufabc.app.grpc.Item parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.ufabc.app.grpc.item parseFrom(
+  public static com.ufabc.app.grpc.Item parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -239,7 +239,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.ufabc.app.grpc.item prototype) {
+  public static Builder newBuilder(com.ufabc.app.grpc.Item prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -255,26 +255,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code item}
+   * Protobuf type {@code Item}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:item)
-      com.ufabc.app.grpc.itemOrBuilder {
+      // @@protoc_insertion_point(builder_implements:Item)
+      com.ufabc.app.grpc.ItemOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.ufabc.app.grpc.DHTProto.internal_static_item_descriptor;
+      return com.ufabc.app.grpc.DHTProto.internal_static_Item_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.ufabc.app.grpc.DHTProto.internal_static_item_fieldAccessorTable
+      return com.ufabc.app.grpc.DHTProto.internal_static_Item_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.ufabc.app.grpc.item.class, com.ufabc.app.grpc.item.Builder.class);
+              com.ufabc.app.grpc.Item.class, com.ufabc.app.grpc.Item.Builder.class);
     }
 
-    // Construct using com.ufabc.app.grpc.item.newBuilder()
+    // Construct using com.ufabc.app.grpc.Item.newBuilder()
     private Builder() {
 
     }
@@ -297,17 +297,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.ufabc.app.grpc.DHTProto.internal_static_item_descriptor;
+      return com.ufabc.app.grpc.DHTProto.internal_static_Item_descriptor;
     }
 
     @java.lang.Override
-    public com.ufabc.app.grpc.item getDefaultInstanceForType() {
-      return com.ufabc.app.grpc.item.getDefaultInstance();
+    public com.ufabc.app.grpc.Item getDefaultInstanceForType() {
+      return com.ufabc.app.grpc.Item.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.ufabc.app.grpc.item build() {
-      com.ufabc.app.grpc.item result = buildPartial();
+    public com.ufabc.app.grpc.Item build() {
+      com.ufabc.app.grpc.Item result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -315,14 +315,14 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.ufabc.app.grpc.item buildPartial() {
-      com.ufabc.app.grpc.item result = new com.ufabc.app.grpc.item(this);
+    public com.ufabc.app.grpc.Item buildPartial() {
+      com.ufabc.app.grpc.Item result = new com.ufabc.app.grpc.Item(this);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartial0(com.ufabc.app.grpc.item result) {
+    private void buildPartial0(com.ufabc.app.grpc.Item result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
         result.keyItemHash_ = keyItemHash_;
@@ -369,16 +369,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.ufabc.app.grpc.item) {
-        return mergeFrom((com.ufabc.app.grpc.item)other);
+      if (other instanceof com.ufabc.app.grpc.Item) {
+        return mergeFrom((com.ufabc.app.grpc.Item)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.ufabc.app.grpc.item other) {
-      if (other == com.ufabc.app.grpc.item.getDefaultInstance()) return this;
+    public Builder mergeFrom(com.ufabc.app.grpc.Item other) {
+      if (other == com.ufabc.app.grpc.Item.getDefaultInstance()) return this;
       if (other.getKeyItemHash() != 0L) {
         setKeyItemHash(other.getKeyItemHash());
       }
@@ -554,23 +554,23 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:item)
+    // @@protoc_insertion_point(builder_scope:Item)
   }
 
-  // @@protoc_insertion_point(class_scope:item)
-  private static final com.ufabc.app.grpc.item DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:Item)
+  private static final com.ufabc.app.grpc.Item DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.ufabc.app.grpc.item();
+    DEFAULT_INSTANCE = new com.ufabc.app.grpc.Item();
   }
 
-  public static com.ufabc.app.grpc.item getDefaultInstance() {
+  public static com.ufabc.app.grpc.Item getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<item>
-      PARSER = new com.google.protobuf.AbstractParser<item>() {
+  private static final com.google.protobuf.Parser<Item>
+      PARSER = new com.google.protobuf.AbstractParser<Item>() {
     @java.lang.Override
-    public item parsePartialFrom(
+    public Item parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -589,17 +589,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<item> parser() {
+  public static com.google.protobuf.Parser<Item> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<item> getParserForType() {
+  public com.google.protobuf.Parser<Item> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.ufabc.app.grpc.item getDefaultInstanceForType() {
+  public com.ufabc.app.grpc.Item getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

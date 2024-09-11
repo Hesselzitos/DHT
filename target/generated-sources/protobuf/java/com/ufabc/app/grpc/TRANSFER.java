@@ -41,9 +41,9 @@ private static final long serialVersionUID = 0L;
 
   private int bitField0_;
   public static final int ITEMTRANSFER_FIELD_NUMBER = 1;
-  private com.ufabc.app.grpc.item itemTransfer_;
+  private com.ufabc.app.grpc.Item itemTransfer_;
   /**
-   * <code>.item itemTransfer = 1;</code>
+   * <code>.Item itemTransfer = 1;</code>
    * @return Whether the itemTransfer field is set.
    */
   @java.lang.Override
@@ -51,19 +51,19 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <code>.item itemTransfer = 1;</code>
+   * <code>.Item itemTransfer = 1;</code>
    * @return The itemTransfer.
    */
   @java.lang.Override
-  public com.ufabc.app.grpc.item getItemTransfer() {
-    return itemTransfer_ == null ? com.ufabc.app.grpc.item.getDefaultInstance() : itemTransfer_;
+  public com.ufabc.app.grpc.Item getItemTransfer() {
+    return itemTransfer_ == null ? com.ufabc.app.grpc.Item.getDefaultInstance() : itemTransfer_;
   }
   /**
-   * <code>.item itemTransfer = 1;</code>
+   * <code>.Item itemTransfer = 1;</code>
    */
   @java.lang.Override
-  public com.ufabc.app.grpc.itemOrBuilder getItemTransferOrBuilder() {
-    return itemTransfer_ == null ? com.ufabc.app.grpc.item.getDefaultInstance() : itemTransfer_;
+  public com.ufabc.app.grpc.ItemOrBuilder getItemTransferOrBuilder() {
+    return itemTransfer_ == null ? com.ufabc.app.grpc.Item.getDefaultInstance() : itemTransfer_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -413,31 +413,31 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private com.ufabc.app.grpc.item itemTransfer_;
+    private com.ufabc.app.grpc.Item itemTransfer_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        com.ufabc.app.grpc.item, com.ufabc.app.grpc.item.Builder, com.ufabc.app.grpc.itemOrBuilder> itemTransferBuilder_;
+        com.ufabc.app.grpc.Item, com.ufabc.app.grpc.Item.Builder, com.ufabc.app.grpc.ItemOrBuilder> itemTransferBuilder_;
     /**
-     * <code>.item itemTransfer = 1;</code>
+     * <code>.Item itemTransfer = 1;</code>
      * @return Whether the itemTransfer field is set.
      */
     public boolean hasItemTransfer() {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.item itemTransfer = 1;</code>
+     * <code>.Item itemTransfer = 1;</code>
      * @return The itemTransfer.
      */
-    public com.ufabc.app.grpc.item getItemTransfer() {
+    public com.ufabc.app.grpc.Item getItemTransfer() {
       if (itemTransferBuilder_ == null) {
-        return itemTransfer_ == null ? com.ufabc.app.grpc.item.getDefaultInstance() : itemTransfer_;
+        return itemTransfer_ == null ? com.ufabc.app.grpc.Item.getDefaultInstance() : itemTransfer_;
       } else {
         return itemTransferBuilder_.getMessage();
       }
     }
     /**
-     * <code>.item itemTransfer = 1;</code>
+     * <code>.Item itemTransfer = 1;</code>
      */
-    public Builder setItemTransfer(com.ufabc.app.grpc.item value) {
+    public Builder setItemTransfer(com.ufabc.app.grpc.Item value) {
       if (itemTransferBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -451,10 +451,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.item itemTransfer = 1;</code>
+     * <code>.Item itemTransfer = 1;</code>
      */
     public Builder setItemTransfer(
-        com.ufabc.app.grpc.item.Builder builderForValue) {
+        com.ufabc.app.grpc.Item.Builder builderForValue) {
       if (itemTransferBuilder_ == null) {
         itemTransfer_ = builderForValue.build();
       } else {
@@ -465,13 +465,13 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.item itemTransfer = 1;</code>
+     * <code>.Item itemTransfer = 1;</code>
      */
-    public Builder mergeItemTransfer(com.ufabc.app.grpc.item value) {
+    public Builder mergeItemTransfer(com.ufabc.app.grpc.Item value) {
       if (itemTransferBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0) &&
           itemTransfer_ != null &&
-          itemTransfer_ != com.ufabc.app.grpc.item.getDefaultInstance()) {
+          itemTransfer_ != com.ufabc.app.grpc.Item.getDefaultInstance()) {
           getItemTransferBuilder().mergeFrom(value);
         } else {
           itemTransfer_ = value;
@@ -486,7 +486,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.item itemTransfer = 1;</code>
+     * <code>.Item itemTransfer = 1;</code>
      */
     public Builder clearItemTransfer() {
       bitField0_ = (bitField0_ & ~0x00000001);
@@ -499,33 +499,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.item itemTransfer = 1;</code>
+     * <code>.Item itemTransfer = 1;</code>
      */
-    public com.ufabc.app.grpc.item.Builder getItemTransferBuilder() {
+    public com.ufabc.app.grpc.Item.Builder getItemTransferBuilder() {
       bitField0_ |= 0x00000001;
       onChanged();
       return getItemTransferFieldBuilder().getBuilder();
     }
     /**
-     * <code>.item itemTransfer = 1;</code>
+     * <code>.Item itemTransfer = 1;</code>
      */
-    public com.ufabc.app.grpc.itemOrBuilder getItemTransferOrBuilder() {
+    public com.ufabc.app.grpc.ItemOrBuilder getItemTransferOrBuilder() {
       if (itemTransferBuilder_ != null) {
         return itemTransferBuilder_.getMessageOrBuilder();
       } else {
         return itemTransfer_ == null ?
-            com.ufabc.app.grpc.item.getDefaultInstance() : itemTransfer_;
+            com.ufabc.app.grpc.Item.getDefaultInstance() : itemTransfer_;
       }
     }
     /**
-     * <code>.item itemTransfer = 1;</code>
+     * <code>.Item itemTransfer = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        com.ufabc.app.grpc.item, com.ufabc.app.grpc.item.Builder, com.ufabc.app.grpc.itemOrBuilder> 
+        com.ufabc.app.grpc.Item, com.ufabc.app.grpc.Item.Builder, com.ufabc.app.grpc.ItemOrBuilder> 
         getItemTransferFieldBuilder() {
       if (itemTransferBuilder_ == null) {
         itemTransferBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.ufabc.app.grpc.item, com.ufabc.app.grpc.item.Builder, com.ufabc.app.grpc.itemOrBuilder>(
+            com.ufabc.app.grpc.Item, com.ufabc.app.grpc.Item.Builder, com.ufabc.app.grpc.ItemOrBuilder>(
                 getItemTransfer(),
                 getParentForChildren(),
                 isClean());

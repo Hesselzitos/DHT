@@ -41,9 +41,9 @@ private static final long serialVersionUID = 0L;
 
   private int bitField0_;
   public static final int ITEMTOSTORE_FIELD_NUMBER = 1;
-  private com.ufabc.app.grpc.item itemToStore_;
+  private com.ufabc.app.grpc.Item itemToStore_;
   /**
-   * <code>.item itemToStore = 1;</code>
+   * <code>.Item itemToStore = 1;</code>
    * @return Whether the itemToStore field is set.
    */
   @java.lang.Override
@@ -51,19 +51,19 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <code>.item itemToStore = 1;</code>
+   * <code>.Item itemToStore = 1;</code>
    * @return The itemToStore.
    */
   @java.lang.Override
-  public com.ufabc.app.grpc.item getItemToStore() {
-    return itemToStore_ == null ? com.ufabc.app.grpc.item.getDefaultInstance() : itemToStore_;
+  public com.ufabc.app.grpc.Item getItemToStore() {
+    return itemToStore_ == null ? com.ufabc.app.grpc.Item.getDefaultInstance() : itemToStore_;
   }
   /**
-   * <code>.item itemToStore = 1;</code>
+   * <code>.Item itemToStore = 1;</code>
    */
   @java.lang.Override
-  public com.ufabc.app.grpc.itemOrBuilder getItemToStoreOrBuilder() {
-    return itemToStore_ == null ? com.ufabc.app.grpc.item.getDefaultInstance() : itemToStore_;
+  public com.ufabc.app.grpc.ItemOrBuilder getItemToStoreOrBuilder() {
+    return itemToStore_ == null ? com.ufabc.app.grpc.Item.getDefaultInstance() : itemToStore_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -413,31 +413,31 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private com.ufabc.app.grpc.item itemToStore_;
+    private com.ufabc.app.grpc.Item itemToStore_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        com.ufabc.app.grpc.item, com.ufabc.app.grpc.item.Builder, com.ufabc.app.grpc.itemOrBuilder> itemToStoreBuilder_;
+        com.ufabc.app.grpc.Item, com.ufabc.app.grpc.Item.Builder, com.ufabc.app.grpc.ItemOrBuilder> itemToStoreBuilder_;
     /**
-     * <code>.item itemToStore = 1;</code>
+     * <code>.Item itemToStore = 1;</code>
      * @return Whether the itemToStore field is set.
      */
     public boolean hasItemToStore() {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.item itemToStore = 1;</code>
+     * <code>.Item itemToStore = 1;</code>
      * @return The itemToStore.
      */
-    public com.ufabc.app.grpc.item getItemToStore() {
+    public com.ufabc.app.grpc.Item getItemToStore() {
       if (itemToStoreBuilder_ == null) {
-        return itemToStore_ == null ? com.ufabc.app.grpc.item.getDefaultInstance() : itemToStore_;
+        return itemToStore_ == null ? com.ufabc.app.grpc.Item.getDefaultInstance() : itemToStore_;
       } else {
         return itemToStoreBuilder_.getMessage();
       }
     }
     /**
-     * <code>.item itemToStore = 1;</code>
+     * <code>.Item itemToStore = 1;</code>
      */
-    public Builder setItemToStore(com.ufabc.app.grpc.item value) {
+    public Builder setItemToStore(com.ufabc.app.grpc.Item value) {
       if (itemToStoreBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -451,10 +451,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.item itemToStore = 1;</code>
+     * <code>.Item itemToStore = 1;</code>
      */
     public Builder setItemToStore(
-        com.ufabc.app.grpc.item.Builder builderForValue) {
+        com.ufabc.app.grpc.Item.Builder builderForValue) {
       if (itemToStoreBuilder_ == null) {
         itemToStore_ = builderForValue.build();
       } else {
@@ -465,13 +465,13 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.item itemToStore = 1;</code>
+     * <code>.Item itemToStore = 1;</code>
      */
-    public Builder mergeItemToStore(com.ufabc.app.grpc.item value) {
+    public Builder mergeItemToStore(com.ufabc.app.grpc.Item value) {
       if (itemToStoreBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0) &&
           itemToStore_ != null &&
-          itemToStore_ != com.ufabc.app.grpc.item.getDefaultInstance()) {
+          itemToStore_ != com.ufabc.app.grpc.Item.getDefaultInstance()) {
           getItemToStoreBuilder().mergeFrom(value);
         } else {
           itemToStore_ = value;
@@ -486,7 +486,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.item itemToStore = 1;</code>
+     * <code>.Item itemToStore = 1;</code>
      */
     public Builder clearItemToStore() {
       bitField0_ = (bitField0_ & ~0x00000001);
@@ -499,33 +499,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.item itemToStore = 1;</code>
+     * <code>.Item itemToStore = 1;</code>
      */
-    public com.ufabc.app.grpc.item.Builder getItemToStoreBuilder() {
+    public com.ufabc.app.grpc.Item.Builder getItemToStoreBuilder() {
       bitField0_ |= 0x00000001;
       onChanged();
       return getItemToStoreFieldBuilder().getBuilder();
     }
     /**
-     * <code>.item itemToStore = 1;</code>
+     * <code>.Item itemToStore = 1;</code>
      */
-    public com.ufabc.app.grpc.itemOrBuilder getItemToStoreOrBuilder() {
+    public com.ufabc.app.grpc.ItemOrBuilder getItemToStoreOrBuilder() {
       if (itemToStoreBuilder_ != null) {
         return itemToStoreBuilder_.getMessageOrBuilder();
       } else {
         return itemToStore_ == null ?
-            com.ufabc.app.grpc.item.getDefaultInstance() : itemToStore_;
+            com.ufabc.app.grpc.Item.getDefaultInstance() : itemToStore_;
       }
     }
     /**
-     * <code>.item itemToStore = 1;</code>
+     * <code>.Item itemToStore = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        com.ufabc.app.grpc.item, com.ufabc.app.grpc.item.Builder, com.ufabc.app.grpc.itemOrBuilder> 
+        com.ufabc.app.grpc.Item, com.ufabc.app.grpc.Item.Builder, com.ufabc.app.grpc.ItemOrBuilder> 
         getItemToStoreFieldBuilder() {
       if (itemToStoreBuilder_ == null) {
         itemToStoreBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.ufabc.app.grpc.item, com.ufabc.app.grpc.item.Builder, com.ufabc.app.grpc.itemOrBuilder>(
+            com.ufabc.app.grpc.Item, com.ufabc.app.grpc.Item.Builder, com.ufabc.app.grpc.ItemOrBuilder>(
                 getItemToStore(),
                 getParentForChildren(),
                 isClean());

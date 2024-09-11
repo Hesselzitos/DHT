@@ -45,9 +45,9 @@ private static final long serialVersionUID = 0L;
 
   private int bitField0_;
   public static final int HASHTABLEENTRANT_FIELD_NUMBER = 1;
-  private com.ufabc.app.grpc.hashTable hashTableEntrant_;
+  private com.ufabc.app.grpc.HashTable hashTableEntrant_;
   /**
-   * <code>.hashTable hashTableEntrant = 1;</code>
+   * <code>.HashTable hashTableEntrant = 1;</code>
    * @return Whether the hashTableEntrant field is set.
    */
   @java.lang.Override
@@ -55,19 +55,19 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <code>.hashTable hashTableEntrant = 1;</code>
+   * <code>.HashTable hashTableEntrant = 1;</code>
    * @return The hashTableEntrant.
    */
   @java.lang.Override
-  public com.ufabc.app.grpc.hashTable getHashTableEntrant() {
-    return hashTableEntrant_ == null ? com.ufabc.app.grpc.hashTable.getDefaultInstance() : hashTableEntrant_;
+  public com.ufabc.app.grpc.HashTable getHashTableEntrant() {
+    return hashTableEntrant_ == null ? com.ufabc.app.grpc.HashTable.getDefaultInstance() : hashTableEntrant_;
   }
   /**
-   * <code>.hashTable hashTableEntrant = 1;</code>
+   * <code>.HashTable hashTableEntrant = 1;</code>
    */
   @java.lang.Override
-  public com.ufabc.app.grpc.hashTableOrBuilder getHashTableEntrantOrBuilder() {
-    return hashTableEntrant_ == null ? com.ufabc.app.grpc.hashTable.getDefaultInstance() : hashTableEntrant_;
+  public com.ufabc.app.grpc.HashTableOrBuilder getHashTableEntrantOrBuilder() {
+    return hashTableEntrant_ == null ? com.ufabc.app.grpc.HashTable.getDefaultInstance() : hashTableEntrant_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -421,31 +421,31 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private com.ufabc.app.grpc.hashTable hashTableEntrant_;
+    private com.ufabc.app.grpc.HashTable hashTableEntrant_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        com.ufabc.app.grpc.hashTable, com.ufabc.app.grpc.hashTable.Builder, com.ufabc.app.grpc.hashTableOrBuilder> hashTableEntrantBuilder_;
+        com.ufabc.app.grpc.HashTable, com.ufabc.app.grpc.HashTable.Builder, com.ufabc.app.grpc.HashTableOrBuilder> hashTableEntrantBuilder_;
     /**
-     * <code>.hashTable hashTableEntrant = 1;</code>
+     * <code>.HashTable hashTableEntrant = 1;</code>
      * @return Whether the hashTableEntrant field is set.
      */
     public boolean hasHashTableEntrant() {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.hashTable hashTableEntrant = 1;</code>
+     * <code>.HashTable hashTableEntrant = 1;</code>
      * @return The hashTableEntrant.
      */
-    public com.ufabc.app.grpc.hashTable getHashTableEntrant() {
+    public com.ufabc.app.grpc.HashTable getHashTableEntrant() {
       if (hashTableEntrantBuilder_ == null) {
-        return hashTableEntrant_ == null ? com.ufabc.app.grpc.hashTable.getDefaultInstance() : hashTableEntrant_;
+        return hashTableEntrant_ == null ? com.ufabc.app.grpc.HashTable.getDefaultInstance() : hashTableEntrant_;
       } else {
         return hashTableEntrantBuilder_.getMessage();
       }
     }
     /**
-     * <code>.hashTable hashTableEntrant = 1;</code>
+     * <code>.HashTable hashTableEntrant = 1;</code>
      */
-    public Builder setHashTableEntrant(com.ufabc.app.grpc.hashTable value) {
+    public Builder setHashTableEntrant(com.ufabc.app.grpc.HashTable value) {
       if (hashTableEntrantBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -459,10 +459,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.hashTable hashTableEntrant = 1;</code>
+     * <code>.HashTable hashTableEntrant = 1;</code>
      */
     public Builder setHashTableEntrant(
-        com.ufabc.app.grpc.hashTable.Builder builderForValue) {
+        com.ufabc.app.grpc.HashTable.Builder builderForValue) {
       if (hashTableEntrantBuilder_ == null) {
         hashTableEntrant_ = builderForValue.build();
       } else {
@@ -473,13 +473,13 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.hashTable hashTableEntrant = 1;</code>
+     * <code>.HashTable hashTableEntrant = 1;</code>
      */
-    public Builder mergeHashTableEntrant(com.ufabc.app.grpc.hashTable value) {
+    public Builder mergeHashTableEntrant(com.ufabc.app.grpc.HashTable value) {
       if (hashTableEntrantBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0) &&
           hashTableEntrant_ != null &&
-          hashTableEntrant_ != com.ufabc.app.grpc.hashTable.getDefaultInstance()) {
+          hashTableEntrant_ != com.ufabc.app.grpc.HashTable.getDefaultInstance()) {
           getHashTableEntrantBuilder().mergeFrom(value);
         } else {
           hashTableEntrant_ = value;
@@ -494,7 +494,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.hashTable hashTableEntrant = 1;</code>
+     * <code>.HashTable hashTableEntrant = 1;</code>
      */
     public Builder clearHashTableEntrant() {
       bitField0_ = (bitField0_ & ~0x00000001);
@@ -507,33 +507,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.hashTable hashTableEntrant = 1;</code>
+     * <code>.HashTable hashTableEntrant = 1;</code>
      */
-    public com.ufabc.app.grpc.hashTable.Builder getHashTableEntrantBuilder() {
+    public com.ufabc.app.grpc.HashTable.Builder getHashTableEntrantBuilder() {
       bitField0_ |= 0x00000001;
       onChanged();
       return getHashTableEntrantFieldBuilder().getBuilder();
     }
     /**
-     * <code>.hashTable hashTableEntrant = 1;</code>
+     * <code>.HashTable hashTableEntrant = 1;</code>
      */
-    public com.ufabc.app.grpc.hashTableOrBuilder getHashTableEntrantOrBuilder() {
+    public com.ufabc.app.grpc.HashTableOrBuilder getHashTableEntrantOrBuilder() {
       if (hashTableEntrantBuilder_ != null) {
         return hashTableEntrantBuilder_.getMessageOrBuilder();
       } else {
         return hashTableEntrant_ == null ?
-            com.ufabc.app.grpc.hashTable.getDefaultInstance() : hashTableEntrant_;
+            com.ufabc.app.grpc.HashTable.getDefaultInstance() : hashTableEntrant_;
       }
     }
     /**
-     * <code>.hashTable hashTableEntrant = 1;</code>
+     * <code>.HashTable hashTableEntrant = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        com.ufabc.app.grpc.hashTable, com.ufabc.app.grpc.hashTable.Builder, com.ufabc.app.grpc.hashTableOrBuilder> 
+        com.ufabc.app.grpc.HashTable, com.ufabc.app.grpc.HashTable.Builder, com.ufabc.app.grpc.HashTableOrBuilder> 
         getHashTableEntrantFieldBuilder() {
       if (hashTableEntrantBuilder_ == null) {
         hashTableEntrantBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.ufabc.app.grpc.hashTable, com.ufabc.app.grpc.hashTable.Builder, com.ufabc.app.grpc.hashTableOrBuilder>(
+            com.ufabc.app.grpc.HashTable, com.ufabc.app.grpc.HashTable.Builder, com.ufabc.app.grpc.HashTableOrBuilder>(
                 getHashTableEntrant(),
                 getParentForChildren(),
                 isClean());

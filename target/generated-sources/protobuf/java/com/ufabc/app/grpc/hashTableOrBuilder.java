@@ -4,8 +4,8 @@
 // Protobuf Java Version: 3.25.1
 package com.ufabc.app.grpc;
 
-public interface hashTableOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:hashTable)
+public interface HashTableOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:HashTable)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -33,14 +33,8 @@ public interface hashTableOrBuilder extends
       getIPBytes();
 
   /**
-   * <code>string port = 3;</code>
+   * <code>int32 port = 3;</code>
    * @return The port.
    */
-  java.lang.String getPort();
-  /**
-   * <code>string port = 3;</code>
-   * @return The bytes for port.
-   */
-  com.google.protobuf.ByteString
-      getPortBytes();
+  int getPort();
 }

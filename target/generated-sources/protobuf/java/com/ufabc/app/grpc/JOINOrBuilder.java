@@ -9,17 +9,17 @@ public interface JOINOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.hashTable hashTableEntrant = 1;</code>
+   * <code>.HashTable hashTableEntrant = 1;</code>
    * @return Whether the hashTableEntrant field is set.
    */
   boolean hasHashTableEntrant();
   /**
-   * <code>.hashTable hashTableEntrant = 1;</code>
+   * <code>.HashTable hashTableEntrant = 1;</code>
    * @return The hashTableEntrant.
    */
-  com.ufabc.app.grpc.hashTable getHashTableEntrant();
+  com.ufabc.app.grpc.HashTable getHashTableEntrant();
   /**
-   * <code>.hashTable hashTableEntrant = 1;</code>
+   * <code>.HashTable hashTableEntrant = 1;</code>
    */
-  com.ufabc.app.grpc.hashTableOrBuilder getHashTableEntrantOrBuilder();
+  com.ufabc.app.grpc.HashTableOrBuilder getHashTableEntrantOrBuilder();
 }

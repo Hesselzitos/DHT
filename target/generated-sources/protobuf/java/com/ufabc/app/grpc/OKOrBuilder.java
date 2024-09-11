@@ -9,17 +9,17 @@ public interface OKOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.item item = 1;</code>
+   * <code>.Item item = 1;</code>
    * @return Whether the item field is set.
    */
   boolean hasItem();
   /**
-   * <code>.item item = 1;</code>
+   * <code>.Item item = 1;</code>
    * @return The item.
    */
-  com.ufabc.app.grpc.item getItem();
+  com.ufabc.app.grpc.Item getItem();
   /**
-   * <code>.item item = 1;</code>
+   * <code>.Item item = 1;</code>
    */
-  com.ufabc.app.grpc.itemOrBuilder getItemOrBuilder();
+  com.ufabc.app.grpc.ItemOrBuilder getItemOrBuilder();
 }

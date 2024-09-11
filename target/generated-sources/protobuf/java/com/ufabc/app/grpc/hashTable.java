@@ -5,41 +5,40 @@
 package com.ufabc.app.grpc;
 
 /**
- * Protobuf type {@code hashTable}
+ * Protobuf type {@code HashTable}
  */
-public final class hashTable extends
+public final class HashTable extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:hashTable)
-    hashTableOrBuilder {
+    // @@protoc_insertion_point(message_implements:HashTable)
+    HashTableOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use hashTable.newBuilder() to construct.
-  private hashTable(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use HashTable.newBuilder() to construct.
+  private HashTable(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private hashTable() {
+  private HashTable() {
     hashIdentifier_ = "";
     iP_ = "";
-    port_ = "";
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new hashTable();
+    return new HashTable();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.ufabc.app.grpc.DHTProto.internal_static_hashTable_descriptor;
+    return com.ufabc.app.grpc.DHTProto.internal_static_HashTable_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.ufabc.app.grpc.DHTProto.internal_static_hashTable_fieldAccessorTable
+    return com.ufabc.app.grpc.DHTProto.internal_static_HashTable_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.ufabc.app.grpc.hashTable.class, com.ufabc.app.grpc.hashTable.Builder.class);
+            com.ufabc.app.grpc.HashTable.class, com.ufabc.app.grpc.HashTable.Builder.class);
   }
 
   public static final int HASHIDENTIFIER_FIELD_NUMBER = 1;
@@ -121,42 +120,14 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int PORT_FIELD_NUMBER = 3;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object port_ = "";
+  private int port_ = 0;
   /**
-   * <code>string port = 3;</code>
+   * <code>int32 port = 3;</code>
    * @return The port.
    */
   @java.lang.Override
-  public java.lang.String getPort() {
-    java.lang.Object ref = port_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      port_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string port = 3;</code>
-   * @return The bytes for port.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getPortBytes() {
-    java.lang.Object ref = port_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      port_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public int getPort() {
+    return port_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -179,8 +150,8 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(iP_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, iP_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(port_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, port_);
+    if (port_ != 0) {
+      output.writeInt32(3, port_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -197,8 +168,9 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(iP_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, iP_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(port_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, port_);
+    if (port_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(3, port_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -210,17 +182,17 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.ufabc.app.grpc.hashTable)) {
+    if (!(obj instanceof com.ufabc.app.grpc.HashTable)) {
       return super.equals(obj);
     }
-    com.ufabc.app.grpc.hashTable other = (com.ufabc.app.grpc.hashTable) obj;
+    com.ufabc.app.grpc.HashTable other = (com.ufabc.app.grpc.HashTable) obj;
 
     if (!getHashIdentifier()
         .equals(other.getHashIdentifier())) return false;
     if (!getIP()
         .equals(other.getIP())) return false;
-    if (!getPort()
-        .equals(other.getPort())) return false;
+    if (getPort()
+        != other.getPort()) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -237,50 +209,50 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + IP_FIELD_NUMBER;
     hash = (53 * hash) + getIP().hashCode();
     hash = (37 * hash) + PORT_FIELD_NUMBER;
-    hash = (53 * hash) + getPort().hashCode();
+    hash = (53 * hash) + getPort();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.ufabc.app.grpc.hashTable parseFrom(
+  public static com.ufabc.app.grpc.HashTable parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.ufabc.app.grpc.hashTable parseFrom(
+  public static com.ufabc.app.grpc.HashTable parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.ufabc.app.grpc.hashTable parseFrom(
+  public static com.ufabc.app.grpc.HashTable parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.ufabc.app.grpc.hashTable parseFrom(
+  public static com.ufabc.app.grpc.HashTable parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.ufabc.app.grpc.hashTable parseFrom(byte[] data)
+  public static com.ufabc.app.grpc.HashTable parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.ufabc.app.grpc.hashTable parseFrom(
+  public static com.ufabc.app.grpc.HashTable parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.ufabc.app.grpc.hashTable parseFrom(java.io.InputStream input)
+  public static com.ufabc.app.grpc.HashTable parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.ufabc.app.grpc.hashTable parseFrom(
+  public static com.ufabc.app.grpc.HashTable parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -288,26 +260,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static com.ufabc.app.grpc.hashTable parseDelimitedFrom(java.io.InputStream input)
+  public static com.ufabc.app.grpc.HashTable parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.ufabc.app.grpc.hashTable parseDelimitedFrom(
+  public static com.ufabc.app.grpc.HashTable parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.ufabc.app.grpc.hashTable parseFrom(
+  public static com.ufabc.app.grpc.HashTable parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.ufabc.app.grpc.hashTable parseFrom(
+  public static com.ufabc.app.grpc.HashTable parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -320,7 +292,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.ufabc.app.grpc.hashTable prototype) {
+  public static Builder newBuilder(com.ufabc.app.grpc.HashTable prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -336,26 +308,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code hashTable}
+   * Protobuf type {@code HashTable}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:hashTable)
-      com.ufabc.app.grpc.hashTableOrBuilder {
+      // @@protoc_insertion_point(builder_implements:HashTable)
+      com.ufabc.app.grpc.HashTableOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.ufabc.app.grpc.DHTProto.internal_static_hashTable_descriptor;
+      return com.ufabc.app.grpc.DHTProto.internal_static_HashTable_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.ufabc.app.grpc.DHTProto.internal_static_hashTable_fieldAccessorTable
+      return com.ufabc.app.grpc.DHTProto.internal_static_HashTable_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.ufabc.app.grpc.hashTable.class, com.ufabc.app.grpc.hashTable.Builder.class);
+              com.ufabc.app.grpc.HashTable.class, com.ufabc.app.grpc.HashTable.Builder.class);
     }
 
-    // Construct using com.ufabc.app.grpc.hashTable.newBuilder()
+    // Construct using com.ufabc.app.grpc.HashTable.newBuilder()
     private Builder() {
 
     }
@@ -371,24 +343,24 @@ private static final long serialVersionUID = 0L;
       bitField0_ = 0;
       hashIdentifier_ = "";
       iP_ = "";
-      port_ = "";
+      port_ = 0;
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.ufabc.app.grpc.DHTProto.internal_static_hashTable_descriptor;
+      return com.ufabc.app.grpc.DHTProto.internal_static_HashTable_descriptor;
     }
 
     @java.lang.Override
-    public com.ufabc.app.grpc.hashTable getDefaultInstanceForType() {
-      return com.ufabc.app.grpc.hashTable.getDefaultInstance();
+    public com.ufabc.app.grpc.HashTable getDefaultInstanceForType() {
+      return com.ufabc.app.grpc.HashTable.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.ufabc.app.grpc.hashTable build() {
-      com.ufabc.app.grpc.hashTable result = buildPartial();
+    public com.ufabc.app.grpc.HashTable build() {
+      com.ufabc.app.grpc.HashTable result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -396,14 +368,14 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.ufabc.app.grpc.hashTable buildPartial() {
-      com.ufabc.app.grpc.hashTable result = new com.ufabc.app.grpc.hashTable(this);
+    public com.ufabc.app.grpc.HashTable buildPartial() {
+      com.ufabc.app.grpc.HashTable result = new com.ufabc.app.grpc.HashTable(this);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartial0(com.ufabc.app.grpc.hashTable result) {
+    private void buildPartial0(com.ufabc.app.grpc.HashTable result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
         result.hashIdentifier_ = hashIdentifier_;
@@ -450,16 +422,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.ufabc.app.grpc.hashTable) {
-        return mergeFrom((com.ufabc.app.grpc.hashTable)other);
+      if (other instanceof com.ufabc.app.grpc.HashTable) {
+        return mergeFrom((com.ufabc.app.grpc.HashTable)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.ufabc.app.grpc.hashTable other) {
-      if (other == com.ufabc.app.grpc.hashTable.getDefaultInstance()) return this;
+    public Builder mergeFrom(com.ufabc.app.grpc.HashTable other) {
+      if (other == com.ufabc.app.grpc.HashTable.getDefaultInstance()) return this;
       if (!other.getHashIdentifier().isEmpty()) {
         hashIdentifier_ = other.hashIdentifier_;
         bitField0_ |= 0x00000001;
@@ -470,10 +442,8 @@ private static final long serialVersionUID = 0L;
         bitField0_ |= 0x00000002;
         onChanged();
       }
-      if (!other.getPort().isEmpty()) {
-        port_ = other.port_;
-        bitField0_ |= 0x00000004;
-        onChanged();
+      if (other.getPort() != 0) {
+        setPort(other.getPort());
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -511,11 +481,11 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000002;
               break;
             } // case 18
-            case 26: {
-              port_ = input.readStringRequireUtf8();
+            case 24: {
+              port_ = input.readInt32();
               bitField0_ |= 0x00000004;
               break;
-            } // case 26
+            } // case 24
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -677,74 +647,34 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object port_ = "";
+    private int port_ ;
     /**
-     * <code>string port = 3;</code>
+     * <code>int32 port = 3;</code>
      * @return The port.
      */
-    public java.lang.String getPort() {
-      java.lang.Object ref = port_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        port_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+    @java.lang.Override
+    public int getPort() {
+      return port_;
     }
     /**
-     * <code>string port = 3;</code>
-     * @return The bytes for port.
-     */
-    public com.google.protobuf.ByteString
-        getPortBytes() {
-      java.lang.Object ref = port_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        port_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string port = 3;</code>
+     * <code>int32 port = 3;</code>
      * @param value The port to set.
      * @return This builder for chaining.
      */
-    public Builder setPort(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
+    public Builder setPort(int value) {
+
       port_ = value;
       bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
     /**
-     * <code>string port = 3;</code>
+     * <code>int32 port = 3;</code>
      * @return This builder for chaining.
      */
     public Builder clearPort() {
-      port_ = getDefaultInstance().getPort();
       bitField0_ = (bitField0_ & ~0x00000004);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string port = 3;</code>
-     * @param value The bytes for port to set.
-     * @return This builder for chaining.
-     */
-    public Builder setPortBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      port_ = value;
-      bitField0_ |= 0x00000004;
+      port_ = 0;
       onChanged();
       return this;
     }
@@ -761,23 +691,23 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:hashTable)
+    // @@protoc_insertion_point(builder_scope:HashTable)
   }
 
-  // @@protoc_insertion_point(class_scope:hashTable)
-  private static final com.ufabc.app.grpc.hashTable DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:HashTable)
+  private static final com.ufabc.app.grpc.HashTable DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.ufabc.app.grpc.hashTable();
+    DEFAULT_INSTANCE = new com.ufabc.app.grpc.HashTable();
   }
 
-  public static com.ufabc.app.grpc.hashTable getDefaultInstance() {
+  public static com.ufabc.app.grpc.HashTable getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<hashTable>
-      PARSER = new com.google.protobuf.AbstractParser<hashTable>() {
+  private static final com.google.protobuf.Parser<HashTable>
+      PARSER = new com.google.protobuf.AbstractParser<HashTable>() {
     @java.lang.Override
-    public hashTable parsePartialFrom(
+    public HashTable parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -796,17 +726,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<hashTable> parser() {
+  public static com.google.protobuf.Parser<HashTable> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<hashTable> getParserForType() {
+  public com.google.protobuf.Parser<HashTable> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.ufabc.app.grpc.hashTable getDefaultInstanceForType() {
+  public com.ufabc.app.grpc.HashTable getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 
