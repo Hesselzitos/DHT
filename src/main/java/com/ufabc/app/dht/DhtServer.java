@@ -9,19 +9,22 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import static com.ufabc.app.service.FileService.readControlDHTFile;
-import static com.ufabc.app.service.FileService.writeControlDHTFile;
+import static com.ufabc.app.service.FileService.ReWriteControlDHTFile;
 
 public class DhtServer{
     private io.grpc.Server server;
     private static HashTable selfHashTable;
 
     private static final Logger logger = Logger.getLogger(DhtServer.class.getName());
+
+    public static HashTable getSelfHashTable() {
+        return selfHashTable;
+    }
 
 //    public JOIN_OK joinRing(JOIN join){
 //        return JOIN_OK.newBuilder().build();
@@ -38,7 +41,7 @@ public class DhtServer{
     public void start() {
         /* The port on which the server should run */
         initializeServer();
-        int port = selfHashTable.getPort();
+        int port = Integer.parseInt(selfHashTable.getPort());
         try {
             server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())
                     .addService(new DHTImpl())
@@ -86,14 +89,18 @@ public class DhtServer{
     public static void initializeServer() {
         configureNode();
         ArrayList<String> dhtNodes = readControlDHTFile();
-        while(dhtNodes.contains(selfHashTable.getHashIdentifier()))configureNode();
-        dhtNodes.add(selfHashTable.getHashIdentifier());
-        writeControlDHTFile(dhtNodes);
+        String port = String.valueOf(selfHashTable.getPort());
+        while(dhtNodes.contains(port)){
+            configureNode();
+            port = String.valueOf(selfHashTable.getPort());
+        }
+        dhtNodes.add(port);
+        ReWriteControlDHTFile(dhtNodes);
     }
 
     private static void configureNode() {
         logger.info("Configuring node properties");
-        int port = new Random().ints(49152, 65535).findFirst().getAsInt();
+        String port = String.valueOf(new Random().ints(49152, 65535).findFirst().getAsInt());
         String ip = "127.0.0.1";
         String hashIdentifier = hashIdentifierGenerate(ip + port);
         selfHashTable = HashTable.newBuilder().setHashIdentifier(hashIdentifier).setIP(ip).setPort(port).build();

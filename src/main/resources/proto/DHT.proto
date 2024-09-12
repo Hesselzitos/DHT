@@ -17,7 +17,7 @@ service DHT {
 message HashTable{
   string HashIdentifier=1;
   string IP=2;
-  int32 port=3;
+  string port=3;
 }
 message Item{
   int64 keyItemHash=1;

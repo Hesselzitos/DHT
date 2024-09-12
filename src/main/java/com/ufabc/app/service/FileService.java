@@ -3,8 +3,6 @@ package com.ufabc.app.service;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,12 +14,12 @@ public class FileService {
 
 
     public static ArrayList<String> readControlDHTFile() {
-        ArrayList<String> values = new ArrayList<>(Collections.singletonList(""));
+        ArrayList<String> values = new ArrayList<>();
         String line;
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             line = br.readLine(); // Read the second line
             if (line != null) {
-                values = new ArrayList<>(Arrays.asList(line.split(delimiter)));
+                values = new ArrayList<String>(Arrays.asList(line.split(delimiter)));
             }
             logger.info(csvFile+" read with sucess.");
         } catch (IOException e) {
@@ -30,7 +28,7 @@ public class FileService {
         return values;
     }
 
-    public static void writeControlDHTFile(ArrayList<String> dhtNodes) {
+    public static void ReWriteControlDHTFile(ArrayList<String> dhtNodes) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile))) {
             String line = String.join(delimiter, dhtNodes);
             writer.write(line);

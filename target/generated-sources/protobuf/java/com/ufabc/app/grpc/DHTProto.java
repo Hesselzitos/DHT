@@ -90,7 +90,7 @@ public final class DHTProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\017proto/DHT.proto\"=\n\tHashTable\022\026\n\016HashId" +
-      "entifier\030\001 \001(\t\022\n\n\002IP\030\002 \001(\t\022\014\n\004port\030\003 \001(\005" +
+      "entifier\030\001 \001(\t\022\n\n\002IP\030\002 \001(\t\022\014\n\004port\030\003 \001(\t" +
       "\"E\n\004Item\022\023\n\013keyItemHash\030\001 \001(\003\022\025\n\rsizeVal" +
       "ueItem\030\002 \001(\003\022\021\n\tvalueItem\030\003 \001(\014\"\033\n\014Messa" +
       "geReply\022\013\n\003ack\030\001 \001(\t\",\n\004JOIN\022$\n\020hashTabl" +

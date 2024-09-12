@@ -33,8 +33,14 @@ public interface HashTableOrBuilder extends
       getIPBytes();
 
   /**
-   * <code>int32 port = 3;</code>
+   * <code>string port = 3;</code>
    * @return The port.
    */
-  int getPort();
+  java.lang.String getPort();
+  /**
+   * <code>string port = 3;</code>
+   * @return The bytes for port.
+   */
+  com.google.protobuf.ByteString
+      getPortBytes();
 }
