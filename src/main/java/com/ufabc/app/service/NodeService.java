@@ -2,7 +2,6 @@ package com.ufabc.app.service;
 
 import com.ufabc.app.dht.DhtClient;
 import com.ufabc.app.dht.DhtServer;
-import com.ufabc.app.grpc.DHTGrpc;
 import com.ufabc.app.grpc.HashTable;
 import com.ufabc.app.grpc.JOIN;
 import io.grpc.*;
@@ -38,5 +37,3 @@ public class NodeService {
         }
     }
 
-
-}
