@@ -8,6 +8,7 @@ import com.ufabc.app.grpc.JOIN_OK;
 import io.grpc.*;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class NodeService {
@@ -21,24 +22,33 @@ public class NodeService {
         final DhtServer server = new DhtServer();
         server.start();
         selfHashTable = DhtServer.getSelfHashTable();
+        tryJoinRing();
+        server.blockUntilShutdown();
+    }
+
+    private static void tryJoinRing() {
         ArrayList<String> nodes = FileService.readControlDHTFile();
-        if(nodes.size()==1){
-            predecessorHashTable = selfHashTable;
-            sucessorHashTable = selfHashTable;
-        } else {
-                nodes.remove(selfHashTable.getPort());
-                String target = selfHashTable.getIP()+":"+nodes.get(0);
-                ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
+        while (!nodes.isEmpty()) {
+            String target = selfHashTable.getIP()+":"+nodes.getFirst();
+            ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
                     .build();
-                DhtClient dhtClient = new DhtClient(channel);
-                JOIN join = JOIN.newBuilder().setHashTableEntrant(selfHashTable).build();
+            DhtClient dhtClient = new DhtClient(channel);
+            JOIN join = JOIN.newBuilder().setHashTableEntrant(selfHashTable).build();
+
+            try {
                 JOIN_OK joinOk= dhtClient.joinRing(join);
                 predecessorHashTable = joinOk.getHashTablePredecessor();
                 sucessorHashTable = joinOk.getHashTableSucessor();
-            logger.info("Predecessor seted:"+predecessorHashTable.getHashIdentifier());
-            logger.info("Sucessor seted:"+sucessorHashTable.getHashIdentifier());
+                break;
+            } catch (Exception e) {
+                nodes.removeFirst();
+                logger.log(Level.WARNING,e.getMessage());
             }
-        server.blockUntilShutdown();
+
         }
+        logger.info("Predecessor seted:"+predecessorHashTable.getHashIdentifier());
+        logger.info("Sucessor seted:"+sucessorHashTable.getHashIdentifier());
     }
+
+}
 

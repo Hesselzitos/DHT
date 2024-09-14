@@ -110,7 +110,7 @@ public class DhtServer{
     private static String hashIdentifierGenerate(String textToHash) {
         // Get an instance of SHA-256 digest
         try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            MessageDigest digest = MessageDigest.getInstance("SHA-1");
 
 
             // Generate the hash as a byte array
