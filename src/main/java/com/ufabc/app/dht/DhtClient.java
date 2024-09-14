@@ -3,6 +3,7 @@ package com.ufabc.app.dht;
 import com.ufabc.app.grpc.*;
 import com.ufabc.app.service.FileService;
 import io.grpc.Channel;
+import io.grpc.stub.StreamObserver;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;

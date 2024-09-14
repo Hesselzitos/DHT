@@ -3,6 +3,7 @@ package com.ufabc.app.dht;
 import com.ufabc.app.grpc.*;
 import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
+import io.grpc.stub.StreamObserver;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -131,5 +132,12 @@ public class DhtServer{
 
     static class DHTImpl extends DHTGrpc.DHTImplBase{
 
+        @Override
+        public void joinRing(JOIN request, StreamObserver<JOIN_OK> responseObserver) {
+            logger.info("Receiving on "+selfHashTable.getHashIdentifier()+" from "+request.getHashTableEntrant().getHashIdentifier());
+            JOIN_OK joinOk = JOIN_OK.newBuilder().setHashTablePredecessor(selfHashTable).setHashTableSucessor(selfHashTable).build();
+            responseObserver.onNext(joinOk);
+            responseObserver.onCompleted();
+        }
     }
 }

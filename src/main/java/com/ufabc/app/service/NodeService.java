@@ -4,6 +4,7 @@ import com.ufabc.app.dht.DhtClient;
 import com.ufabc.app.dht.DhtServer;
 import com.ufabc.app.grpc.HashTable;
 import com.ufabc.app.grpc.JOIN;
+import com.ufabc.app.grpc.JOIN_OK;
 import io.grpc.*;
 
 import java.util.ArrayList;
@@ -19,7 +20,6 @@ public class NodeService {
     public static void initializeNode() {
         final DhtServer server = new DhtServer();
         server.start();
-        server.blockUntilShutdown();
         selfHashTable = DhtServer.getSelfHashTable();
         ArrayList<String> nodes = FileService.readControlDHTFile();
         if(nodes.size()==1){
@@ -32,8 +32,13 @@ public class NodeService {
                     .build();
                 DhtClient dhtClient = new DhtClient(channel);
                 JOIN join = JOIN.newBuilder().setHashTableEntrant(selfHashTable).build();
-                dhtClient.joinRing(join);
+                JOIN_OK joinOk= dhtClient.joinRing(join);
+                predecessorHashTable = joinOk.getHashTablePredecessor();
+                sucessorHashTable = joinOk.getHashTableSucessor();
+            logger.info("Predecessor seted:"+predecessorHashTable.getHashIdentifier());
+            logger.info("Sucessor seted:"+sucessorHashTable.getHashIdentifier());
             }
+        server.blockUntilShutdown();
         }
     }
 
