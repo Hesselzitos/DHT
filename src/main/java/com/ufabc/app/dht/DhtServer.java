@@ -20,8 +20,26 @@ import static com.ufabc.app.service.FileService.ReWriteControlDHTFile;
 public class DhtServer{
     private io.grpc.Server server;
     private static HashTable selfHashTable;
+    private static HashTable predecessorHashTable;
+    private static HashTable sucessorHashTable;
 
     private static final Logger logger = Logger.getLogger(DhtServer.class.getName());
+
+    public static HashTable getSucessorHashTable() {
+        return sucessorHashTable;
+    }
+
+    public static void setSucessorHashTable(HashTable sucessorHashTable) {
+        DhtServer.sucessorHashTable = sucessorHashTable;
+    }
+
+    public static HashTable getPredecessorHashTable() {
+        return predecessorHashTable;
+    }
+
+    public static void setPredecessorHashTable(HashTable predecessorHashTable) {
+        DhtServer.predecessorHashTable = predecessorHashTable;
+    }
 
     public static HashTable getSelfHashTable() {
         return selfHashTable;
@@ -135,7 +153,22 @@ public class DhtServer{
         @Override
         public void joinRing(JOIN request, StreamObserver<JOIN_OK> responseObserver) {
             logger.info("Receiving on "+selfHashTable.getHashIdentifier()+" from "+request.getHashTableEntrant().getHashIdentifier());
-            JOIN_OK joinOk = JOIN_OK.newBuilder().setHashTablePredecessor(selfHashTable).setHashTableSucessor(selfHashTable).build();
+            int port = Integer.parseInt(request.getHashTableEntrant().getPort());
+            int selfPort = Integer.parseInt(selfHashTable.getPort());
+            int predecessorPort = Integer.parseInt(predecessorHashTable.getPort());
+            int sucessorPort = Integer.parseInt(sucessorHashTable.getPort());
+            JOIN_OK joinOk =null;
+
+            if(selfPort==predecessorPort){
+                joinOk = JOIN_OK.newBuilder().setHashTablePredecessor(selfHashTable).setHashTableSucessor(selfHashTable).build();
+                predecessorHashTable = request.getHashTableEntrant();
+                sucessorHashTable = request.getHashTableEntrant();
+            } else if(port>selfPort && port<sucessorPort){
+                DhtClient.joinRing(request,sucessorHashTable.getPort());
+            } else if(port>sucessorPort){
+                DhtClient.joinRing(request,sucessorHashTable.getPort());
+            }
+
             responseObserver.onNext(joinOk);
             responseObserver.onCompleted();
         }
