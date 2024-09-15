@@ -27,7 +27,23 @@ public class DhtClient {
         }
         return joinOk;
     }
-    public MessageReply sucessorAtualize(NEW_NODE newNode){
+
+    public static MessageReply sucessorAtualize(NEW_NODE newNode, HashTable sucessor){
+        String target = newNode.getHashTableEntrant().getIP()+":"+sucessor.getPort();
+        ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
+                .build();
+        DHTGrpc.DHTBlockingStub dhtBlockingStub = DHTGrpc.newBlockingStub(channel);
+        String hashIdentifier = newNode.getHashTableEntrant().getHashIdentifier();
+        String sucessorHashIdentifier = sucessor.getHashIdentifier();
+        logger.info("Trying to atualize the predecessor(me: "+hashIdentifier+") of my sucessor("+sucessorHashIdentifier+").");
+
+        MessageReply messageReply = null;
+        try {
+            messageReply= dhtBlockingStub.sucessorAtualize(newNode);
+            logger.log(Level.INFO,messageReply.getAck());
+        } catch (Exception e) {
+            logger.log(Level.SEVERE,e.getMessage());
+        }
         return MessageReply.newBuilder().build();
     }
     public MessageReply transferItemResponsability(TRANSFER transfer){

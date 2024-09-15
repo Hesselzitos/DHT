@@ -3,6 +3,7 @@ package com.ufabc.app.dht;
 import com.ufabc.app.grpc.*;
 import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
+import io.grpc.Server;
 import io.grpc.stub.StreamObserver;
 
 import java.io.IOException;
@@ -25,6 +26,11 @@ public class DhtServer{
 
     private static final Logger logger = Logger.getLogger(DhtServer.class.getName());
 
+    public DhtServer() {}
+    public DhtServer(Server server) {
+        this.server = server;
+    }
+
     public static HashTable getSucessorHashTable() {
         return sucessorHashTable;
     }
@@ -45,16 +51,10 @@ public class DhtServer{
         return selfHashTable;
     }
 
-//    public JOIN_OK joinRing(JOIN join){
-//        return JOIN_OK.newBuilder().build();
-//    }
-//    public MessageReply sucessorAtualize(NEW_NODE newNode){
-//        return MessageReply.newBuilder().setAck("ok").build();
-//    }
-//    public MessageReply transferItemResponsability(TRANSFER transfer){
-//        return MessageReply.newBuilder().setAck("ok").build();
-//
-//    }
+    public static void setSelfHashTable(HashTable selfHashTable) {
+        DhtServer.selfHashTable = selfHashTable;
+    }
+
 
 
     public void start() {
@@ -108,10 +108,10 @@ public class DhtServer{
     public static void initializeServer() {
         configureNode();
         ArrayList<String> dhtNodes = readControlDHTFile();
-        String port = String.valueOf(selfHashTable.getPort());
+        String port = selfHashTable.getPort();
         while(dhtNodes.contains(port)){
             configureNode();
-            port = String.valueOf(selfHashTable.getPort());
+            port = selfHashTable.getPort();
         }
         dhtNodes.add(port);
         ReWriteControlDHTFile(dhtNodes);
@@ -123,6 +123,8 @@ public class DhtServer{
         String ip = "127.0.0.1";
         String hashIdentifier = hashIdentifierGenerate(ip + port);
         selfHashTable = HashTable.newBuilder().setHashIdentifier(hashIdentifier).setIP(ip).setPort(port).build();
+        predecessorHashTable = HashTable.newBuilder().setHashIdentifier(hashIdentifier).setIP(ip).setPort(port).build();
+        sucessorHashTable = HashTable.newBuilder().setHashIdentifier(hashIdentifier).setIP(ip).setPort(port).build();
     }
 
     private static String hashIdentifierGenerate(String textToHash) {
@@ -147,29 +149,46 @@ public class DhtServer{
             throw new RuntimeException(e);
         }
     }
+     public static Boolean shouldAskNextNode(int requestKey){
+         int selfPort = Integer.parseInt(selfHashTable.getPort());
+         int sucessorPort = Integer.parseInt(sucessorHashTable.getPort());
+
+         if(requestKey>selfPort){
+             if(requestKey>sucessorPort){
+                 return selfPort <= sucessorPort && selfPort != sucessorPort;
+             } else return false;
+         }
+        return true;
+     }
 
     static class DHTImpl extends DHTGrpc.DHTImplBase{
 
         @Override
         public void joinRing(JOIN request, StreamObserver<JOIN_OK> responseObserver) {
             logger.info("Receiving on "+selfHashTable.getHashIdentifier()+" from "+request.getHashTableEntrant().getHashIdentifier());
-            int port = Integer.parseInt(request.getHashTableEntrant().getPort());
-            int selfPort = Integer.parseInt(selfHashTable.getPort());
-            int predecessorPort = Integer.parseInt(predecessorHashTable.getPort());
-            int sucessorPort = Integer.parseInt(sucessorHashTable.getPort());
             JOIN_OK joinOk =null;
 
-            if(selfPort==predecessorPort){
-                joinOk = JOIN_OK.newBuilder().setHashTablePredecessor(selfHashTable).setHashTableSucessor(selfHashTable).build();
-                predecessorHashTable = request.getHashTableEntrant();
+            if(shouldAskNextNode(Integer.parseInt(request.getHashTableEntrant().getPort()))){
+                joinOk = JOIN_OK
+                        .newBuilder()
+                        .setHashTablePredecessor(selfHashTable)
+                        .setHashTableSucessor(sucessorHashTable)
+                        .build();
                 sucessorHashTable = request.getHashTableEntrant();
-            } else if(port>selfPort && port<sucessorPort){
-                DhtClient.joinRing(request,sucessorHashTable.getPort());
-            } else if(port>sucessorPort){
-                DhtClient.joinRing(request,sucessorHashTable.getPort());
-            }
+            } else joinOk = DhtClient.joinRing(request,sucessorHashTable.getPort());
+
 
             responseObserver.onNext(joinOk);
+            responseObserver.onCompleted();
+        }
+
+        @Override
+        public void sucessorAtualize(NEW_NODE request, StreamObserver<MessageReply> responseObserver) {
+            predecessorHashTable=request.getHashTableEntrant();
+            responseObserver.onNext(MessageReply
+                    .newBuilder()
+                    .setAck("Predecessor atualized to "+predecessorHashTable.getHashIdentifier())
+                    .build());
             responseObserver.onCompleted();
         }
     }

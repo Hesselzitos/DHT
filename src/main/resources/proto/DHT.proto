@@ -45,7 +45,7 @@ message JOIN_OK{
   HashTable hashTableSucessor=2;
 }
 message NEW_NODE{
-  HashTable hashTableSucessor=1;
+  HashTable hashTableEntrant=1;
 }
 message LEAVE{
   HashTable hashTablePredecessor=1;

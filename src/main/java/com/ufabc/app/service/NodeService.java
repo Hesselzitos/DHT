@@ -5,10 +5,9 @@ import com.ufabc.app.dht.DhtServer;
 import com.ufabc.app.grpc.HashTable;
 import com.ufabc.app.grpc.JOIN;
 import com.ufabc.app.grpc.JOIN_OK;
-import io.grpc.*;
+import com.ufabc.app.grpc.NEW_NODE;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class NodeService {
@@ -34,10 +33,10 @@ public class NodeService {
                 server.setSucessorHashTable(joinOk.getHashTableSucessor());
                 break;
             } else nodes.removeFirst();
-
         }
         logger.info("Predecessor seted:"+server.getPredecessorHashTable().getHashIdentifier());
         logger.info("Sucessor seted:"+server.getSucessorHashTable().getHashIdentifier());
+        DhtClient.sucessorAtualize(NEW_NODE.newBuilder().setHashTableEntrant(selfHashTable).build(),server.getSucessorHashTable());
     }
 
 }
