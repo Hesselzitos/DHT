@@ -4,9 +4,7 @@ import com.ufabc.app.grpc.HashTable;
 import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
 import io.grpc.Server;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,17 +16,18 @@ class DhtServerTest {
             "1,1,1,true",
             "1,1,2,false",
             "2,1,5,false",
-            "1,2,5,true"
+            "1,2,5,true",
+            "5,2,4,false"
     })
-    void shouldAskNextNode(String selfPort, String sucessorPort, String entrantPort, Boolean expected) {
+    void shouldNotAskNextNode(String selfPort, String sucessorPort, String entrantPort, Boolean expected) {
         Server server = Grpc.newServerBuilderForPort(Integer.parseInt(selfPort), InsecureServerCredentials.create())
                 .addService(new DhtServer.DHTImpl())
                 .build();
         DhtServer dhtServer = new DhtServer(server);
+        String hashIdentifier = DhtServer.hashIdentifierGenerate("test");
+        dhtServer.setSelfHashTable(HashTable.newBuilder().setHashIdentifier(hashIdentifier).setPort(selfPort).build());
+        dhtServer.setSucessorHashTable(HashTable.newBuilder().setHashIdentifier(hashIdentifier).setPort(sucessorPort).build());
 
-        dhtServer.setSucessorHashTable(HashTable.newBuilder().setPort(sucessorPort).build());
-        dhtServer.setSelfHashTable(HashTable.newBuilder().setPort(selfPort).build());
-
-        assertEquals(expected,DhtServer.shouldAskNextNode(Integer.parseInt(entrantPort)));
+        assertEquals(expected,DhtServer.shouldNotAskNextNode(Integer.parseInt(entrantPort)));
     }
 }

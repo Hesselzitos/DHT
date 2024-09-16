@@ -34,8 +34,6 @@ public class NodeService {
                 break;
             } else nodes.removeFirst();
         }
-        logger.info("Predecessor seted:"+server.getPredecessorHashTable().getHashIdentifier());
-        logger.info("Sucessor seted:"+server.getSucessorHashTable().getHashIdentifier());
         DhtClient.sucessorAtualize(NEW_NODE.newBuilder().setHashTableEntrant(selfHashTable).build(),server.getSucessorHashTable());
     }
 
