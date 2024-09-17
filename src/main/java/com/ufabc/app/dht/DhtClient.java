@@ -28,19 +28,35 @@ public class DhtClient {
         return joinOk;
     }
 
-    public static void sucessorAtualize(NEW_NODE newNode, HashTable sucessor){
-        String target = newNode.getHashTableEntrant().getIP()+":"+sucessor.getPort();
+    public static void sucessorAtualize(){
+        String target = DhtServer.getSelfHashTable().getIP()+":"+DhtServer.getSelfHashTable().getPort();
         ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
                 .build();
         DHTGrpc.DHTBlockingStub dhtBlockingStub = DHTGrpc.newBlockingStub(channel);
-        String hashIdentifier = newNode.getHashTableEntrant().getHashIdentifier();
-        String sucessorHashIdentifier = sucessor.getHashIdentifier();
+        String hashIdentifier = DhtServer.getSelfHashTable().getHashIdentifier();
+        String sucessorHashIdentifier = DhtServer.getSucessorHashTable().getHashIdentifier();
         logger.info("From "+hashIdentifier+" trying to atualize the predecessor of my sucessor("+sucessorHashIdentifier+").");
 
         MessageReply messageReply = null;
         try {
-            messageReply= dhtBlockingStub.sucessorAtualize(newNode);
-            logger.log(Level.INFO,"From "+newNode.getHashTableEntrant().getHashIdentifier()+" "+messageReply.getAck());
+            messageReply= dhtBlockingStub.sucessorAtualize(NEW_NODE.newBuilder().setHashTableEntrant(DhtServer.getSelfHashTable()).build());
+            logger.log(Level.INFO,"From "+hashIdentifier+" "+messageReply.getAck());
+        } catch (Exception e) {
+            logger.log(Level.SEVERE,e.getMessage());
+        }
+    }
+
+    public static void leaveRing(){
+        String target = DhtServer.getPredecessorHashTable().getIP()+":"+DhtServer.getPredecessorHashTable().getPort();
+        ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
+                .build();
+        DHTGrpc.DHTBlockingStub dhtBlockingStub = DHTGrpc.newBlockingStub(channel);
+        String hashIdentifier = DhtServer.getSelfHashTable().getHashIdentifier();
+        logger.info("From "+hashIdentifier+" trying to leave the ring");
+        messageReceived messageReply;
+        try {
+            dhtBlockingStub.leaveRing(LEAVE.newBuilder().setHashTablePredecessor(DhtServer.getSucessorHashTable()).build());
+            logger.log(Level.INFO,"From "+hashIdentifier+": leaved ring with sucess.");
         } catch (Exception e) {
             logger.log(Level.SEVERE,e.getMessage());
         }
