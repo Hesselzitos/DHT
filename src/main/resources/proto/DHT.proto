@@ -8,8 +8,10 @@ option objc_class_prefix = "DHT";
 service DHT {
   //Avisa que entrou na rede e recebe seu no sucessor, que atualizou o proprio predecessor
   rpc joinRing(JOIN) returns(JOIN_OK){}
-  //Atualiza o sucessor de seu predecessor
+  //Atualiza o predecessor de seu sucessor
   rpc sucessorAtualize(NEW_NODE) returns(MessageReply){}
+  //Atualiza o sucessor de seu predecessor
+  rpc leaveRing(LEAVE) returns(messageReceived){}
   //Transfere a responsabilidade pelos itens daquele novo HT com seus items
   rpc transferItemResponsability(TRANSFER) returns(MessageReply){}
 }
@@ -24,6 +26,7 @@ message Item{
   int64 sizeValueItem=2;
   bytes valueItem=3;
 }
+message messageReceived{}
 message MessageReply{
   string ack=1;
 }

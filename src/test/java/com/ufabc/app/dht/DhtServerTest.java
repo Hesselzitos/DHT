@@ -13,13 +13,15 @@ class DhtServerTest {
 
     @ParameterizedTest
     @CsvSource({
-            "1,1,1,true",
+            "1,1,1,false",
             "1,1,2,false",
             "2,1,5,false",
             "1,2,5,true",
-            "5,2,4,false"
+            "5,2,4,false",
+            "5,5,6,false",
+            "5,5,4,false"
     })
-    void shouldNotAskNextNode(String selfPort, String sucessorPort, String entrantPort, Boolean expected) {
+    void shouldAskNextNode(String selfPort, String sucessorPort, String entrantPort, Boolean expected) {
         Server server = Grpc.newServerBuilderForPort(Integer.parseInt(selfPort), InsecureServerCredentials.create())
                 .addService(new DhtServer.DHTImpl())
                 .build();
@@ -28,6 +30,6 @@ class DhtServerTest {
         dhtServer.setSelfHashTable(HashTable.newBuilder().setHashIdentifier(hashIdentifier).setPort(selfPort).build());
         dhtServer.setSucessorHashTable(HashTable.newBuilder().setHashIdentifier(hashIdentifier).setPort(sucessorPort).build());
 
-        assertEquals(expected,DhtServer.shouldNotAskNextNode(Integer.parseInt(entrantPort)));
+        assertEquals(expected,DhtServer.shouldAskNextNode(Integer.parseInt(entrantPort)));
     }
 }
