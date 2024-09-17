@@ -34,7 +34,7 @@ public class NodeService {
                 break;
             } else nodes.removeFirst();
         }
-        DhtClient.sucessorAtualize(NEW_NODE.newBuilder().setHashTableEntrant(selfHashTable).build(),server.getSucessorHashTable());
+        DhtClient.sucessorAtualize();
     }
 
 }
