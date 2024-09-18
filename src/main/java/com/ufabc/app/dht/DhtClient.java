@@ -7,6 +7,8 @@ import io.grpc.ManagedChannel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static com.ufabc.app.dht.DhtServer.getSelfHashTable;
+
 public class DhtClient {
     private static final Logger logger = Logger.getLogger(DhtClient.class.getName());
 
@@ -29,17 +31,17 @@ public class DhtClient {
     }
 
     public static void sucessorAtualize(){
-        String target = DhtServer.getSelfHashTable().getIP()+":"+DhtServer.getSelfHashTable().getPort();
+        String target = DhtServer.getSucessorHashTable().getIP()+":"+ DhtServer.getSucessorHashTable().getPort();
         ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
                 .build();
         DHTGrpc.DHTBlockingStub dhtBlockingStub = DHTGrpc.newBlockingStub(channel);
-        int hashIdentifier = DhtServer.getSelfHashTable().getHashIdentifier();
+        int hashIdentifier = getSelfHashTable().getHashIdentifier();
         int sucessorHashIdentifier = DhtServer.getSucessorHashTable().getHashIdentifier();
         logger.info("From "+hashIdentifier+" trying to atualize the predecessor of my sucessor("+sucessorHashIdentifier+").");
 
         MessageReply messageReply = null;
         try {
-            messageReply= dhtBlockingStub.sucessorAtualize(NEW_NODE.newBuilder().setHashTableEntrant(DhtServer.getSelfHashTable()).build());
+            messageReply= dhtBlockingStub.sucessorAtualize(NEW_NODE.newBuilder().setHashTableEntrant(getSelfHashTable()).build());
             logger.log(Level.INFO,"From "+hashIdentifier+" "+messageReply.getAck());
         } catch (Exception e) {
             logger.log(Level.SEVERE,e.getMessage());
@@ -51,7 +53,7 @@ public class DhtClient {
         ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
                 .build();
         DHTGrpc.DHTBlockingStub dhtBlockingStub = DHTGrpc.newBlockingStub(channel);
-        int hashIdentifier = DhtServer.getSelfHashTable().getHashIdentifier();
+        int hashIdentifier = getSelfHashTable().getHashIdentifier();
         logger.info("From "+hashIdentifier+" trying to leave the ring");
         messageReceived messageReply;
         try {

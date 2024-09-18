@@ -21,14 +21,14 @@ class DhtServerTest {
             "5,5,6,false",
             "5,5,4,false"
     })
-    void shouldAskNextNode(String selfPort, String sucessorPort, String entrantPort, Boolean expected) {
-        Server server = Grpc.newServerBuilderForPort(Integer.parseInt(selfPort), InsecureServerCredentials.create())
+    void shouldAskNextNode(int selfHash, int sucessorHash, int entrantHash, Boolean expected) {
+        Server server = Grpc.newServerBuilderForPort(selfHash, InsecureServerCredentials.create())
                 .addService(new DhtServer.DHTImpl())
                 .build();
         DhtServer dhtServer = new DhtServer(server);
-        dhtServer.setSelfHashTable(HashTable.newBuilder().setHashIdentifier(selfPort.hashCode()).setPort(selfPort).build());
-        dhtServer.setSucessorHashTable(HashTable.newBuilder().setHashIdentifier(entrantPort.hashCode()).setPort(sucessorPort).build());
+        dhtServer.setSelfHashTable(HashTable.newBuilder().setHashIdentifier(selfHash).setHashIdentifier(selfHash).build());
+        dhtServer.setSucessorHashTable(HashTable.newBuilder().setHashIdentifier(entrantHash).setHashIdentifier(sucessorHash).build());
 
-        assertEquals(expected,DhtServer.shouldAskNextNode(Integer.parseInt(entrantPort)));
+        assertEquals(expected,DhtServer.shouldAskNextNode(entrantHash));
     }
 }
