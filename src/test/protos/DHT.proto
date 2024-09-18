@@ -14,6 +14,10 @@ service DHT {
   rpc leaveRing(LEAVE) returns(messageReceived){}
   //Transfere a responsabilidade pelos itens daquele novo HT com seus items
   rpc transferItemResponsability(TRANSFER) returns(MessageReply){}
+  //Transfere a responsabilidade pelos itens daquele novo HT com seus items
+  rpc store(Item) returns(messageReceived){}
+  //Transfere a responsabilidade pelos itens daquele novo HT com seus items
+  rpc retrive(Item) returns(Item){}
 }
 
 message HashTable{
@@ -22,9 +26,8 @@ message HashTable{
   string port=3;
 }
 message Item{
-  int64 keyItemHash=1;
-  int64 sizeValueItem=2;
-  bytes valueItem=3;
+  string keyItemHash=1;
+  string valueItem=2;
 }
 message messageReceived{}
 message MessageReply{
@@ -39,7 +42,7 @@ message STORE{
 
 }
 message RETRIEVE{
-  int64 keyItemHash=1;
+  int32 keyItemHash=1;
   HashTable hashTableIdentifier=2;
 }
 //Enviadas diretamente para os ao destinatario

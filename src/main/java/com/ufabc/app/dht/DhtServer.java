@@ -1,6 +1,7 @@
 package com.ufabc.app.dht;
 
 import com.ufabc.app.grpc.*;
+import com.ufabc.app.service.FileService;
 import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
 import io.grpc.Server;
@@ -52,8 +53,6 @@ public class DhtServer{
     public static void setSelfHashTable(HashTable selfHashTable) {
         DhtServer.selfHashTable = selfHashTable;
     }
-
-
 
     public void start() {
         /* The port on which the server should run */
@@ -181,6 +180,34 @@ public class DhtServer{
             setSucessorHashTable(leave.getHashTablePredecessor());
             DhtClient.sucessorAtualize();
             responseObserver.onNext(messageReceived.newBuilder().build());
+            responseObserver.onCompleted();
+        }
+
+        @Override
+        public void store(Item request, StreamObserver<messageReceived> responseObserver) {
+            int key = hashGenerate(request.getKeyItemHash());
+            messageReceived messageReceived;
+            if(shouldAskNextNode(key)){
+                messageReceived = DhtClient.store(request);
+            } else{
+                Item newItem = Item.newBuilder().setKeyItemHash(String.valueOf(key)).setValueItem(request.getValueItem()).build();
+                messageReceived = FileService.store(newItem);
+            }
+            responseObserver.onNext(messageReceived);
+            responseObserver.onCompleted();
+        }
+
+        @Override
+        public void retrive(Item request, StreamObserver<Item> responseObserver) {
+            int key = hashGenerate(request.getKeyItemHash());
+            Item itemResponse;
+            if(shouldAskNextNode(key)){
+                itemResponse = DhtClient.retrive(request);
+            } else{
+                Item newItem = Item.newBuilder().setKeyItemHash(String.valueOf(key)).setValueItem(request.getValueItem()).build();
+                itemResponse = FileService.readItemFile(String.valueOf(key));
+            }
+            responseObserver.onNext(itemResponse);
             responseObserver.onCompleted();
         }
     }

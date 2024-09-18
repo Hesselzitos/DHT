@@ -63,6 +63,26 @@ public class DhtClient {
             logger.log(Level.SEVERE,e.getMessage());
         }
     }
+
+    public static messageReceived store(Item item) {
+        String target = DhtServer.getSucessorHashTable().getIP()+":"+ DhtServer.getSucessorHashTable().getPort();
+        ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
+                .build();
+        DHTGrpc.DHTBlockingStub dhtBlockingStub = DHTGrpc.newBlockingStub(channel);
+        int hashIdentifier = getSelfHashTable().getHashIdentifier();
+        int sucessorHashIdentifier = DhtServer.getSucessorHashTable().getHashIdentifier();
+        logger.info("From "+hashIdentifier+" trying to store in the sucessor("+sucessorHashIdentifier+").");
+
+        messageReceived messageReply = null;
+        try {
+            messageReply= dhtBlockingStub.store(item);
+            logger.log(Level.INFO,"From "+hashIdentifier+" item stored.");
+        } catch (Exception e) {
+            logger.log(Level.SEVERE,e.getMessage());
+        }
+        return messageReply;
+    }
+
     public MessageReply transferItemResponsability(TRANSFER transfer){
         return MessageReply.newBuilder().build();
     }
