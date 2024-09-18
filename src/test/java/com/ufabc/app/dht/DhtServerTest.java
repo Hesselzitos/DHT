@@ -26,9 +26,8 @@ class DhtServerTest {
                 .addService(new DhtServer.DHTImpl())
                 .build();
         DhtServer dhtServer = new DhtServer(server);
-        String hashIdentifier = DhtServer.hashIdentifierGenerate("test");
-        dhtServer.setSelfHashTable(HashTable.newBuilder().setHashIdentifier(hashIdentifier).setPort(selfPort).build());
-        dhtServer.setSucessorHashTable(HashTable.newBuilder().setHashIdentifier(hashIdentifier).setPort(sucessorPort).build());
+        dhtServer.setSelfHashTable(HashTable.newBuilder().setHashIdentifier(selfPort.hashCode()).setPort(selfPort).build());
+        dhtServer.setSucessorHashTable(HashTable.newBuilder().setHashIdentifier(entrantPort.hashCode()).setPort(sucessorPort).build());
 
         assertEquals(expected,DhtServer.shouldAskNextNode(Integer.parseInt(entrantPort)));
     }

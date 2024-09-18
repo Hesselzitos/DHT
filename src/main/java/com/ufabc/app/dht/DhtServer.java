@@ -37,7 +37,7 @@ public class DhtServer{
 
     public static void setSucessorHashTable(HashTable sucessorHashTable) {
         DhtServer.sucessorHashTable = sucessorHashTable;
-        logger.info("From "+selfHashTable.getHashIdentifier()+ "Sucessor seted:"+sucessorHashTable.getHashIdentifier());
+        logger.info("From "+selfHashTable.getHashIdentifier()+ " sucessor seted:"+sucessorHashTable.getHashIdentifier());
     }
 
     public static HashTable getPredecessorHashTable() {
@@ -46,7 +46,7 @@ public class DhtServer{
 
     public static void setPredecessorHashTable(HashTable predecessorHashTable) {
         DhtServer.predecessorHashTable = predecessorHashTable;
-        logger.info("From "+selfHashTable.getHashIdentifier()+ "Predecessor seted:"+predecessorHashTable.getHashIdentifier());
+        logger.info("From "+selfHashTable.getHashIdentifier()+ " predecessor seted:"+predecessorHashTable.getHashIdentifier());
     }
 
     public static HashTable getSelfHashTable() {
@@ -73,22 +73,25 @@ public class DhtServer{
         }
         logger.info("Server started, listening on " + port);
         logger.info("\nInformacoes do Node: \n" + selfHashTable.toString());
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                // Use stderr here since the logger may have been reset by its JVM shutdown hook.
-                System.err.println("*** shutting down gRPC server since JVM is shutting down");
-                DhtServer.this.stop();
-                System.err.println("*** server shut down");
-            }
-        });
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            DhtClient.leaveRing();
+            // Use stderr here since the logger may have been reset by its JVM shutdown hook.
+            System.err.println("*** shutting down gRPC server since JVM is shutting down");
+            DhtServer.this.stop();
+            System.err.println("*** server shut down");
+        }));
     }
 
 
     public void stop() {
         if (server != null) {
+            server.shutdown();
+
             try {
-                server.shutdown().awaitTermination(30, TimeUnit.SECONDS);
+                if (!server.awaitTermination(30, java.util.concurrent.TimeUnit.SECONDS)) {
+                    System.out.println("*** Server didn't shut down in the expected time, forcing shutdown ***");
+                    server.shutdownNow(); // Force shutdown if not all requests completed
+                }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -104,7 +107,6 @@ public class DhtServer{
             }
         }
     }
-
 
 
     public static void initializeServer() {
@@ -123,34 +125,18 @@ public class DhtServer{
         logger.info("Configuring node properties");
         String port = String.valueOf(new Random().ints(49152, 65535).findFirst().getAsInt());
         String ip = "127.0.0.1";
-        String hashIdentifier = hashIdentifierGenerate(ip + port);
+        int hashIdentifier = hashGenerate(ip + port);
         setSelfHashTable(HashTable.newBuilder().setHashIdentifier(hashIdentifier).setIP(ip).setPort(port).build());
         setPredecessorHashTable(HashTable.newBuilder().setHashIdentifier(hashIdentifier).setIP(ip).setPort(port).build());
         setSucessorHashTable(HashTable.newBuilder().setHashIdentifier(hashIdentifier).setIP(ip).setPort(port).build());
     }
 
-    public static String hashIdentifierGenerate(String textToHash) {
-        // Get an instance of SHA-256 digest
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-1");
-
-
-            // Generate the hash as a byte array
-            byte[] encodedhash = digest.digest(textToHash.getBytes(StandardCharsets.UTF_8));
-
-            // Convert the byte array to a hexadecimal string
-            StringBuilder hexString = new StringBuilder();
-            for (byte b : encodedhash) {
-                String hex = Integer.toHexString(0xff & b);
-                if (hex.length() == 1) hexString.append('0');
-                hexString.append(hex);
-            }
-
-            return hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
+    public static int hashGenerate(String textToHash) {
+        int hash = textToHash.hashCode();
+        if (hash<0) return hash*(-1);
+        return hash;
     }
+
      public static Boolean shouldAskNextNode(int requestKey){
          int selfPort = Integer.parseInt(selfHashTable.getPort());
          int sucessorPort = Integer.parseInt(sucessorHashTable.getPort());

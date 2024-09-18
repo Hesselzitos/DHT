@@ -15,7 +15,7 @@ public class DhtClient {
         ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
                 .build();
         DHTGrpc.DHTBlockingStub dhtBlockingStub = DHTGrpc.newBlockingStub(channel);
-        String hashIdentifier = join.getHashTableEntrant().getHashIdentifier();
+        int hashIdentifier = join.getHashTableEntrant().getHashIdentifier();
         logger.info("From "+hashIdentifier+ " trying to connect to the ring.");
 
         JOIN_OK joinOk = null;
@@ -33,8 +33,8 @@ public class DhtClient {
         ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
                 .build();
         DHTGrpc.DHTBlockingStub dhtBlockingStub = DHTGrpc.newBlockingStub(channel);
-        String hashIdentifier = DhtServer.getSelfHashTable().getHashIdentifier();
-        String sucessorHashIdentifier = DhtServer.getSucessorHashTable().getHashIdentifier();
+        int hashIdentifier = DhtServer.getSelfHashTable().getHashIdentifier();
+        int sucessorHashIdentifier = DhtServer.getSucessorHashTable().getHashIdentifier();
         logger.info("From "+hashIdentifier+" trying to atualize the predecessor of my sucessor("+sucessorHashIdentifier+").");
 
         MessageReply messageReply = null;
@@ -51,7 +51,7 @@ public class DhtClient {
         ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
                 .build();
         DHTGrpc.DHTBlockingStub dhtBlockingStub = DHTGrpc.newBlockingStub(channel);
-        String hashIdentifier = DhtServer.getSelfHashTable().getHashIdentifier();
+        int hashIdentifier = DhtServer.getSelfHashTable().getHashIdentifier();
         logger.info("From "+hashIdentifier+" trying to leave the ring");
         messageReceived messageReply;
         try {
