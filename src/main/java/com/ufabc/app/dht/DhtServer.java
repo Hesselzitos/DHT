@@ -10,16 +10,21 @@ import io.grpc.stub.StreamObserver;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.ufabc.app.service.FileService.readControlDHTFile;
 import static com.ufabc.app.service.FileService.ReWriteControlDHTFile;
 
 public class DhtServer{
-    private io.grpc.Server server;
+    private Server server;
     private static HashTable selfHashTable;
     private static HashTable predecessorHashTable;
     private static HashTable sucessorHashTable;
+
+    private static final Map<Integer, Item> dataStore = new HashMap<>();
 
     private static final Logger logger = Logger.getLogger(DhtServer.class.getName());
 
@@ -83,7 +88,7 @@ public class DhtServer{
             server.shutdown();
 
             try {
-                if (!server.awaitTermination(30, java.util.concurrent.TimeUnit.SECONDS)) {
+                if (!server.awaitTermination(30, TimeUnit.SECONDS)) {
                     System.out.println("*** Server didn't shut down in the expected time, forcing shutdown ***");
                     server.shutdownNow(); // Force shutdown if not all requests completed
                 }
@@ -186,12 +191,14 @@ public class DhtServer{
         @Override
         public void store(Item request, StreamObserver<messageReceived> responseObserver) {
             int key = hashGenerate(request.getKeyItemHash());
-            messageReceived messageReceived;
+            messageReceived messageReceived = null;
             if(shouldAskNextNode(key)){
+                logger.info("From "+selfHashTable.getHashIdentifier()+" sending the store to the sucessor "+getSucessorHashTable().getHashIdentifier()+", item hash: "+key);
                 messageReceived = DhtClient.store(request);
             } else{
-                Item newItem = Item.newBuilder().setKeyItemHash(String.valueOf(key)).setValueItem(request.getValueItem()).build();
-                messageReceived = FileService.store(newItem);
+                logger.info("From "+selfHashTable.getHashIdentifier()+" storing the item with the hash: "+key);
+                dataStore.put(key, request);
+                messageReceived = messageReceived.newBuilder().build();
             }
             responseObserver.onNext(messageReceived);
             responseObserver.onCompleted();
@@ -202,10 +209,11 @@ public class DhtServer{
             int key = hashGenerate(request.getKeyItemHash());
             Item itemResponse;
             if(shouldAskNextNode(key)){
+                logger.info("From "+selfHashTable.getHashIdentifier()+" sending the retrive to the sucessor "+getSucessorHashTable().getHashIdentifier()+", item hash: "+key);
                 itemResponse = DhtClient.retrive(request);
             } else{
-                Item newItem = Item.newBuilder().setKeyItemHash(String.valueOf(key)).setValueItem(request.getValueItem()).build();
-                itemResponse = FileService.readItemFile(String.valueOf(key));
+                logger.info("From "+selfHashTable.getHashIdentifier()+" retriving the item with the hash: "+key);
+                itemResponse=dataStore.get(key);
             }
             responseObserver.onNext(itemResponse);
             responseObserver.onCompleted();

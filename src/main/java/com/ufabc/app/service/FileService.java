@@ -32,17 +32,17 @@ public class FileService {
         }
         return values;
     }
-    public static Item readItemFile(String hash) {
-        String fileItemName = hash+csvFileTable;
-        String line = "";
-        try (BufferedReader br = new BufferedReader(new FileReader(fileItemName))) {
-            line = br.readLine(); // Read the second line
-            logger.info(fileItemName+" read with sucess.");
-        } catch (IOException e) {
-            logger.log(Level.INFO,fileItemName+" read failed. \n"+e.getMessage());
-        }
-        return Item.newBuilder().setKeyItemHash(hash).setValueItem(line).build();
-    }
+//    public static Item readItemFile(String hash) {
+//        String fileItemName = hash+csvFileTable;
+//        String line = "";
+//        try (BufferedReader br = new BufferedReader(new FileReader(fileItemName))) {
+//            line = br.readLine(); // Read the second line
+//            logger.info(fileItemName+" read with sucess.");
+//        } catch (IOException e) {
+//            logger.log(Level.INFO,fileItemName+" read failed. \n"+e.getMessage());
+//        }
+//        return Item.newBuilder().setKeyItemHash(hash).setValueItem(line).build();
+//    }
 
     public static void ReWriteControlDHTFile(ArrayList<String> dhtNodes) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile))) {
@@ -54,15 +54,15 @@ public class FileService {
         }
     }
 
-    public static messageReceived store(Item item) {
-        String hash = item.getKeyItemHash();
-        String fileItemName = hash+csvFileTable;
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileItemName))) {
-            writer.write(item.getValueItem().toString());
-            logger.info(fileItemName+" writed with sucess.");
-        } catch (IOException e) {
-            logger.log(Level.SEVERE,fileItemName+" write failed. \n"+e.getMessage());
-        }
-        return messageReceived.newBuilder().build();
-    }
+//    public static messageReceived store(Item item) {
+//        String hash = item.getKeyItemHash();
+//        String fileItemName = hash+csvFileTable;
+//        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileItemName))) {
+//            writer.write(item.getValueItem().toString());
+//            logger.info(fileItemName+" writed with sucess.");
+//        } catch (IOException e) {
+//            logger.log(Level.SEVERE,fileItemName+" write failed. \n"+e.getMessage());
+//        }
+//        return messageReceived.newBuilder().build();
+//    }
 }

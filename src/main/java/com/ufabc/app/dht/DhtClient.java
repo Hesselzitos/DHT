@@ -83,6 +83,10 @@ public class DhtClient {
         return messageReply;
     }
 
+    public static Item retrive(Item request) {
+        return Item.newBuilder().build();
+    }
+
     public MessageReply transferItemResponsability(TRANSFER transfer){
         return MessageReply.newBuilder().build();
     }
