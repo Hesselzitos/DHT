@@ -172,8 +172,22 @@ public class DhtServer{
 
         @Override
         public void sucessorAtualize(NEW_NODE request, StreamObserver<MessageReply> responseObserver) {
+            int predecessorHash = request.getHashTableEntrant().getHashIdentifier();
             setPredecessorHashTable(request.getHashTableEntrant());
             logger.info("From "+selfHashTable.getHashIdentifier()+" sending ack to "+getPredecessorHashTable());
+
+            for(Map.Entry<Integer, Item> item : dataStore.entrySet()){
+                if(predecessorHash<getSelfHashTable().getHashIdentifier() && predecessorHash>= item.getKey()){
+                    DhtClient.transferItemResponsability(TRANSFER.newBuilder().setItemTransfer(item.getValue()).build());
+                    dataStore.remove(item.getKey());
+                } else if (selfHashTable.getHashIdentifier()< item.getKey()){
+                    DhtClient.transferItemResponsability(TRANSFER.newBuilder().setItemTransfer(item.getValue()).build());
+                    dataStore.remove(item.getKey());
+                }
+            }
+
+
+
             responseObserver.onNext(MessageReply
                     .newBuilder()
                     .setAck("From "+selfHashTable.getHashIdentifier()+" predecessor atualized to "+getPredecessorHashTable().getHashIdentifier())
@@ -216,6 +230,22 @@ public class DhtServer{
                 itemResponse=dataStore.get(key);
             }
             responseObserver.onNext(itemResponse);
+            responseObserver.onCompleted();
+        }
+
+        @Override
+        public void transferItemResponsability(TRANSFER transfer, StreamObserver<MessageReply> responseObserver) {
+            int key = hashGenerate(transfer.getItemTransfer().getKeyItemHash());
+            MessageReply messageReply = null;
+            if(shouldAskNextNode(key)){
+                logger.info("From "+selfHashTable.getHashIdentifier()+" sending the retrive to the sucessor "+getSucessorHashTable().getHashIdentifier()+", item hash: "+key);
+                messageReply = DhtClient.transferItemResponsability(transfer);
+            } else{
+                dataStore.put(key, transfer.getItemTransfer());
+                messageReply = MessageReply.newBuilder().setAck("Trnasfer received in "+selfHashTable.getHashIdentifier()).build();
+                logger.info("From "+selfHashTable.getHashIdentifier()+" receving the transfer for the item with the hash: "+key);
+            }
+            responseObserver.onNext(messageReply);
             responseObserver.onCompleted();
         }
     }

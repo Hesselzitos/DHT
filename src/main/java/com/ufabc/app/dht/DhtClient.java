@@ -87,7 +87,21 @@ public class DhtClient {
         return Item.newBuilder().build();
     }
 
-    public MessageReply transferItemResponsability(TRANSFER transfer){
-        return MessageReply.newBuilder().build();
+    public static MessageReply transferItemResponsability(TRANSFER transfer){
+        String target = DhtServer.getSucessorHashTable().getIP()+":"+ DhtServer.getSucessorHashTable().getPort();
+        ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
+                .build();
+        DHTGrpc.DHTBlockingStub dhtBlockingStub = DHTGrpc.newBlockingStub(channel);
+        int hashIdentifier = getSelfHashTable().getHashIdentifier();
+        int sucessorHashIdentifier = DhtServer.getSucessorHashTable().getHashIdentifier();
+        logger.info("From "+hashIdentifier+" trying to transfer the item to the sucessor("+sucessorHashIdentifier+").");
+        MessageReply messageReply = null;
+        try {
+            messageReply= dhtBlockingStub.transferItemResponsability(transfer);
+            logger.log(Level.INFO,"From "+hashIdentifier+" item transferred.");
+        } catch (Exception e) {
+            logger.log(Level.SEVERE,e.getMessage());
+        }
+        return messageReply;
     }
 }
